@@ -1,0 +1,11 @@
+---
+- name: restart beats
+  service:
+    name: "{{item}}"
+    state: restarted
+    enabled: yes
+  loop:
+    - packetbeat
+    - metricbeat
+    - heartbeat-elastic
+    - auditbeat

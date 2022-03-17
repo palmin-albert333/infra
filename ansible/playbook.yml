@@ -1,0 +1,16 @@
+---
+- name: install software
+  hosts: all
+  become: true
+  roles:
+  - general
+  - zabbix-agent
+- name: proxy
+  hosts: proxy
+  become: true
+  roles:
+  - proxy
+
+
+
+#ansible all -m shell -u albert -K -a "sudo apt-get update && sudo apt-get upgrade -y"

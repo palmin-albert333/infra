@@ -1,0 +1,3 @@
+---
+ntp_conf_source: /home/albert/infra/ansible/roles/general/files/ntp.conf
+ntp_conf_dest  : /etc/ntp.conf

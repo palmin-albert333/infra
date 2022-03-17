@@ -1,0 +1,15 @@
+---
+- name: pull ui docker image
+  shell: docker pull gitlab.albert-infra.site:5050/project1/my_project1:ui-latest
+
+- name: rm
+  shell: rm -rf my_project1 || true
+
+- name: git clone
+  shell: git clone https://gitlab.albert-infra.site/project1/my_project1.git
+
+- name: cp file
+  shell: cp /home/albert/my_project1/docker-compose.yml /home/albert/docker-compose.yml
+
+- name: run container
+  shell: docker-compose up -d

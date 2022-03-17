@@ -1,0 +1,20 @@
+---
+- name: apt update
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: install nginx
+  apt: pkg=nginx state=latest
+
+- name: start nginx
+  service:
+      name: nginx
+      state: started
+      enabled: yes
+
+- name: nginx copy global config file
+  copy:
+    src={{ source_conf }} dest={{ dest_conf }}
+  notify:
+    - restart nginx

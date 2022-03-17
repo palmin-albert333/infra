@@ -1,0 +1,37 @@
+#!/bin/bash
+smartctl -s on -a /dev/sda
+smartctl -s on -a /dev/sdb
+smartctl -s on -a /dev/sdc
+smartctl -s on -a /dev/sdd
+
+if smartctl -s on -a /dev/sda | grep PASSED;
+then
+  echo "SMART /dev/sda is GOOD!"
+else
+  curl -s "https://api.telegram.org/bot5251028571:AAFkhjXosdLuulZVRcE3LrVGi4z0ruMXUOs/sendMessage?chat_id=-742976591&text=Proxmox1%20SMART%20/dev/sda%20is%20BAD!"
+fi
+
+if smartctl -s on -a /dev/sdb | grep PASSED;
+then
+  echo "SMART /dev/sdb is GOOD!"
+else
+  curl -s "https://api.telegram.org/bot5251028571:AAFkhjXosdLuulZVRcE3LrVGi4z0ruMXUOs/sendMessage?chat_id=-742976591&text=Proxmox1%20SMART%20/dev/sda%20is%20BAD!"
+fi
+
+if smartctl -s on -a /dev/sdc | grep OK;
+then
+  echo "SMART /dev/sdc is GOOD!"
+else
+  curl -s "https://api.telegram.org/bot5251028571:AAFkhjXosdLuulZVRcE3LrVGi4z0ruMXUOs/sendMessage?chat_id=-742976591&text=Proxmox1%20SMART%20/dev/sda%20is%20BAD!"
+fi
+
+if smartctl -s on -a /dev/sdd | grep OK;
+then
+  echo "SMART /dev/sdd is GOOD!"
+else
+  curl -s "https://api.telegram.org/bot5251028571:AAFkhjXosdLuulZVRcE3LrVGi4z0ruMXUOs/sendMessage?chat_id=-742976591&text=Proxmox1%20SMART%20/dev/sda%20is%20BAD!"
+fi
+
+###curl -s "https://api.telegram.org/bot5251028571:AAFkhjXosdLuulZVRcE3LrVGi4z0ruMXUOs/sendMessage?chat_id=-742976591&text=Proxmox1%20SMART%20/dev/sda%20is%20BAD!" тестовый
+
+###curl -s "https://api.telegram.org/bot2023332846:AAGwBcjFHxeRsMdKhZ1FqVDeROBxU17w4KA/sendMessage?chat_id=-1001612626954&text=Proxmox1%20SMART%20/dev/sda%20is%20BAD!"  который надо

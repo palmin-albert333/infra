@@ -1,0 +1,7 @@
+---
+- name: deploy
+  hosts: web
+  become: true
+  roles:
+  - docker
+  - deploy

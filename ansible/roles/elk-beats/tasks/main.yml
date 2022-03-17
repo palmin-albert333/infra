@@ -1,0 +1,39 @@
+---
+- name: install packetbeat
+  apt:
+    deb: https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.16.2-amd64.deb
+
+- name: install metricbeat
+  apt:
+    deb: https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.16.2-amd64.deb
+
+- name: install heartbeat
+  apt:
+    deb: https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.16.2-amd64.deb
+
+- name: install auditbeat
+  apt:
+    deb: https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.16.2-amd64.deb
+
+
+
+- name: start and enable
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop:
+    - packetbeat
+    - metricbeat
+    - heartbeat-elastic
+    - auditbeat
+
+- name: copy config files for beats
+  copy: src={{ item.src }} dest={{ item.dest }}
+  with_items:
+    - { src: '/home/albert/infra/roles/elk-beats/files/packetbeat.yml', dest: '/etc/packetbeat/packetbeat.yml' }
+    - { src: '/home/albert/infra/roles/elk-beats/files/metricbeat.yml', dest: '/etc/metricbeat/metricbeat.yml' }
+    - { src: '/home/albert/infra/roles/elk-beats/files/heartbeat.yml', dest: '/etc/heartbeat/heartbeat.yml' }
+    - { src: '/home/albert/infra/roles/elk-beats/files/auditbeat.yml', dest: '/etc/auditbeat/auditbeat.yml' }
+  notify:
+    - restart beats
