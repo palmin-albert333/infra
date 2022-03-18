@@ -6,13 +6,13 @@
   - general
   - zabbix-agent
   - elk-beats
-- name: proxy
+- name: proxy server
   hosts: proxy
   become: true
   roles:
   - proxy
-- name: web
-  hosts: proxy
+- name: web server
+  hosts: web
   become: true
   roles:
   - docker

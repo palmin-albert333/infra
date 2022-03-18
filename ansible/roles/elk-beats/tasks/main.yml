@@ -1,19 +1,19 @@
 ---
 - name: install packetbeat
   apt:
-    deb: https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.16.2-amd64.deb
+    deb: https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-8.0.1-amd64.deb
 
 - name: install metricbeat
   apt:
-    deb: https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.16.2-amd64.deb
+    deb: https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-8.0.1-amd64.deb
 
 - name: install heartbeat
   apt:
-    deb: https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.16.2-amd64.deb
+    deb: https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-8.0.1-amd64.deb
 
 - name: install auditbeat
   apt:
-    deb: https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.16.2-amd64.deb
+    deb: https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-8.0.1-amd64.deb
 
 
 

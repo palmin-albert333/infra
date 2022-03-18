@@ -1,0 +1,16 @@
+---
+- name: remove software
+  hosts: all
+  become: yes
+  tasks:
+    - name: remove metricbeat
+      shell: apt remove -y metricbeat
+
+    - name: remove metricbeat
+      shell: apt remove -y auditbeat
+
+    - name: remove metricbeat
+      shell: apt remove -y packetbeat
+
+    - name: remove metricbeat
+      shell: apt remove -y heartbeat

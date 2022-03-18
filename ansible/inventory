@@ -1,5 +1,5 @@
 [proxy]
-proxy-server ansible_host=192.168.18.240
+proxy1 ansible_host=192.168.18.240
 [web]
 web1 ansible_host=192.168.18.241
 web2 ansible_host=192.168.18.242
@@ -13,3 +13,9 @@ gitlab1 ansible_host=192.168.18.246
 [mysql]
 mysql1 ansible_host=192.168.18.247
 mysql2 ansible_host=192.168.18.248
+
+[kuber-master]
+kuber-master1 ansible_host=192.168.18.211
+[kuber-worker]
+kuber-worker1 ansible_host=192.168.18.212
+kuber-worker2 ansible_host=192.168.18.213
