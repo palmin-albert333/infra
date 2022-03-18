@@ -31,9 +31,9 @@
 - name: copy config files for beats
   copy: src={{ item.src }} dest={{ item.dest }}
   with_items:
-    - { src: '/home/albert/infra/roles/elk-beats/files/packetbeat.yml', dest: '/etc/packetbeat/packetbeat.yml' }
-    - { src: '/home/albert/infra/roles/elk-beats/files/metricbeat.yml', dest: '/etc/metricbeat/metricbeat.yml' }
-    - { src: '/home/albert/infra/roles/elk-beats/files/heartbeat.yml', dest: '/etc/heartbeat/heartbeat.yml' }
-    - { src: '/home/albert/infra/roles/elk-beats/files/auditbeat.yml', dest: '/etc/auditbeat/auditbeat.yml' }
+    - { src: '/home/albert/infra/ansible/roles/elk-beats/files/packetbeat.yml', dest: '/etc/packetbeat/packetbeat.yml' }
+    - { src: '/home/albert/infra/ansible/roles/elk-beats/files/metricbeat.yml', dest: '/etc/metricbeat/metricbeat.yml' }
+    - { src: '/home/albert/infra/ansible/roles/elk-beats/files/heartbeat.yml', dest: '/etc/heartbeat/heartbeat.yml' }
+    - { src: '/home/albert/infra/ansible/roles/elk-beats/files/auditbeat.yml', dest: '/etc/auditbeat/auditbeat.yml' }
   notify:
     - restart beats
