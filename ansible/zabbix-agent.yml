@@ -1,0 +1,6 @@
+---
+- name: install zabbix-agent for zabbix 6.0 lts
+  hosts: all
+  become: true
+  roles:
+  - zabbix-agent
