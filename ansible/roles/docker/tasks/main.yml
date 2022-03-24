@@ -40,7 +40,6 @@
 - name: install docker-compose
   apt: pkg=docker-compose state=latest
 
-
 - name: add user albert for group docker
   user: name=albert
         group=docker

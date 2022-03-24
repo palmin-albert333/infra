@@ -10,10 +10,10 @@ elk1 ansible_host=192.168.18.244
 zabbix1 ansible_host=192.168.18.245
 [gitlab]
 gitlab1 ansible_host=192.168.18.246
-[mysql]
-mysql1 ansible_host=192.168.18.247
-mysql2 ansible_host=192.168.18.248
-
+[mongo]
+mongo1 ansible_host=192.168.18.247
+mongo2 ansible_host=192.168.18.248
+mongo3 ansible_host=192.168.18.249
 [kuber-master]
 kuber-master1 ansible_host=192.168.18.211
 [kuber-worker]

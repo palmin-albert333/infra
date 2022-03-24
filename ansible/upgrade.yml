@@ -1,0 +1,7 @@
+---
+- name: remove software
+  hosts: all
+  become: yes
+  tasks:
+    - name: upgrade
+      shell: apt update && apt upgrade -y
