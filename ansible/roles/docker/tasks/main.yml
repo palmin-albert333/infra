@@ -1,16 +1,4 @@
 ---
-- name: install software
-  apt:
-    name: "{{item}}"
-    state: present
-    update_cache: yes
-  loop:
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - gnupg-agent
-    - software-properties-common
-
 - name: add GPG key
   apt_key:
     url: https://download.docker.com/linux/ubuntu/gpg
@@ -40,7 +28,11 @@
 - name: install docker-compose
   apt: pkg=docker-compose state=latest
 
-- name: add user albert for group docker
-  user: name=albert
-        group=docker
-        shell=/bin/bash
+#- name: add user albert for group docker
+#  user: name=albert
+#        group=docker
+#        shell=/bin/bash
+
+- name: update effective groups to include docker
+  user: name=albert groups=docker append=yes
+  meta: reset_connection

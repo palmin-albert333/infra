@@ -5,7 +5,6 @@
   roles:
   - general
   - zabbix-agent
-  - elk-beats
 - name: proxy server
   hosts: proxy
   become: true
@@ -17,6 +16,3 @@
   roles:
   - docker
   - deploy
-
-
-#ansible all -m shell -u albert -K -a "sudo apt-get update && sudo apt-get upgrade -y"

@@ -1,21 +1,24 @@
 ---
+- name: apt update
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    
 - name: install packetbeat
   apt:
-    deb: https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-8.0.1-amd64.deb
+    deb: https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.16.0-amd64.deb
 
 - name: install metricbeat
   apt:
-    deb: https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-8.0.1-amd64.deb
+    deb: https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.16.0-amd64.deb
 
 - name: install heartbeat
   apt:
-    deb: https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-8.0.1-amd64.deb
+    deb: https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.16.0-amd64.deb
 
 - name: install auditbeat
   apt:
-    deb: https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-8.0.1-amd64.deb
-
-
+    deb: https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.16.0-amd64.deb
 
 - name: start and enable
   service:
@@ -23,17 +26,17 @@
     state: started
     enabled: yes
   loop:
-    - packetbeat
     - metricbeat
-    - heartbeat-elastic
     - auditbeat
+    - heartbeat
+    - packebeat
 
 - name: copy config files for beats
   copy: src={{ item.src }} dest={{ item.dest }}
   with_items:
-    - { src: '/home/albert/infra/ansible/roles/elk-beats/files/packetbeat.yml', dest: '/etc/packetbeat/packetbeat.yml' }
-    - { src: '/home/albert/infra/ansible/roles/elk-beats/files/metricbeat.yml', dest: '/etc/metricbeat/metricbeat.yml' }
-    - { src: '/home/albert/infra/ansible/roles/elk-beats/files/heartbeat.yml', dest: '/etc/heartbeat/heartbeat.yml' }
-    - { src: '/home/albert/infra/ansible/roles/elk-beats/files/auditbeat.yml', dest: '/etc/auditbeat/auditbeat.yml' }
+    - { src: '~/infra/ansible/roles/elk-beats/files/packetbeat.yml', dest: '/etc/packetbeat/packetbeat.yml' }
+    - { src: '~/infra/ansible/roles/elk-beats/files/metricbeat.yml', dest: '/etc/metricbeat/metricbeat.yml' }
+    - { src: '~/infra/ansible/roles/elk-beats/files/heartbeat.yml', dest: '/etc/heartbeat/heartbeat.yml' }
+    - { src: '~/infra/ansible/roles/elk-beats/files/auditbeat.yml', dest: '/etc/auditbeat/auditbeat.yml' }
   notify:
     - restart beats

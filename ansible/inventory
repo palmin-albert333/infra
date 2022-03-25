@@ -4,15 +4,9 @@ proxy1 ansible_host=192.168.18.240
 web1 ansible_host=192.168.18.241
 web2 ansible_host=192.168.18.242
 web3 ansible_host=192.168.18.243
-
 [gitlab]
 gitlab1 ansible_host=192.168.18.246
 [mongo]
 mongo1 ansible_host=192.168.18.247
 mongo2 ansible_host=192.168.18.248
 mongo3 ansible_host=192.168.18.249
-[kuber-master]
-kuber-master1 ansible_host=192.168.18.211
-[kuber-worker]
-kuber-worker1 ansible_host=192.168.18.212
-kuber-worker2 ansible_host=192.168.18.213

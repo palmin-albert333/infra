@@ -1,16 +1,30 @@
 ---
+#для быстрых отправки shell команд на сервера. Что то удалить например и тд
 - name: remove software
   hosts: all
   become: yes
   tasks:
+
     - name: remove metricbeat
       shell: apt remove -y metricbeat
 
-    - name: remove metricbeat
+    - name: remove auditbeatbeat
       shell: apt remove -y auditbeat
 
-    - name: remove metricbeat
+    - name: remove packetbeat
       shell: apt remove -y packetbeat
 
-    - name: remove metricbeat
+    - name: remove heartbeat
       shell: apt remove -y heartbeat
+
+    - name: purge metricbeat
+      shell: apt purge -y metricbeat
+
+    - name: purge auditbeat
+      shell: apt purge -y auditbeat
+
+    - name: purge packebeat
+      shell: apt purge -y packetbeat
+
+    - name: purge heartbeat
+      shell: apt purge -y heartbeat
