@@ -28,11 +28,7 @@
 - name: install docker-compose
   apt: pkg=docker-compose state=latest
 
-#- name: add user albert for group docker
-#  user: name=albert
-#        group=docker
-#        shell=/bin/bash
-
-- name: update effective groups to include docker
-  user: name=albert groups=docker append=yes
-  meta: reset_connection
+- name: add user albert for group docker
+  user: name=albert
+        group=docker
+        shell=/bin/bash

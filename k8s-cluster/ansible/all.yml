@@ -1,0 +1,19 @@
+---
+- name: install software
+  hosts: all
+  become: true
+  roles:
+  - general
+  - zabbix-agent
+
+- name: play for master node
+  hosts: kuber-master
+  become: true
+  roles:
+  - kuber-master
+  
+- name: play for worker node
+  hosts: kuber-worker
+  become: true
+  roles:
+  - kuber-worker
