@@ -17,3 +17,36 @@ systemctl restart zabbix-server zabbix-agent
 systemctl enable zabbix-server zabbix-agent
 systemctl restart apache2
 systemctl enable apache2
+
+
+rs.initiate( {
+   _id : "mongoset",
+   members: [
+      { _id: 0, host: "db1:27017" }
+   ]
+})
+
+rs.initiate({
+     _id: 'mongoset',
+     members: [
+       {_id: 0, host:'db1:27017'},
+       {_id: 1, host:'db2:27017'},
+       {_id: 2, host:'db3:27017'}
+     ]
+  })
+
+db.dropUser("admin")
+
+
+db.createUser(
+  {
+    user: "admin",
+    pwd: "15426378",
+    roles: [
+              { role: "dbAdmin", db: "db1" }
+           ]
+  }
+)
+
+#для определения primary на любом хосте
+rs.isMaster().primary
