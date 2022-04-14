@@ -42,6 +42,10 @@
   file:
     path: /var/log/zabbix
     state: directory
+  notify:
+    - restart zabbix-agent
+
+
 
 - name: change permission
   file:

@@ -24,3 +24,6 @@ rs.addArb("mongo3:27017")
 
 Удаление ноды
 rs.remove("mongo2:27017")
+
+Резервное копирование базы данных my_db
+mongodump --db my_db --out /var/backups/mongobackups/`date +"%m-%d-%y"`
