@@ -1,4 +1,5 @@
 ---
+#установка основного программного обеспечения
 - name: install software
   apt:
     name: "{{item}}"

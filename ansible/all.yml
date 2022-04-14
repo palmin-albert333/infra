@@ -16,3 +16,8 @@
   roles:
   - docker
   - deploy
+- name: mongodb
+  hosts: mongo
+  become: true
+  roles:
+  - mongo

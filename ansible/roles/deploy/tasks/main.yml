@@ -1,4 +1,5 @@
 ---
+#для разворачивания нового сервера приложения
 - name: pull ui docker image
   shell: docker pull gitlab.albert-infra.site:5050/project1/my_project1:ui-latest
 

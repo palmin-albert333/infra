@@ -1,0 +1,3 @@
+---
+source_conf:   ~/infra/ansible/roles/mongo/files/mongod.conf
+dest_conf  :   /etc/mongod.conf

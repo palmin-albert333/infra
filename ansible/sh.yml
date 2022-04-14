@@ -22,3 +22,18 @@
 
     - name: systemctl enable
       shell: systemctl enable mongod
+
+    - name: mkdir1
+      shell: mkdir /var/lib/mongodb || true
+
+    - name: mkdir2
+      shell: mkdir /var/log/mongodb || true
+
+    - name: chown1
+      shell: chown mongodb:mongodb /var/lib/mongodb -R
+
+    - name: chown2
+      shell: chown mongodb:mongodb /var/log/mongodb -R
+
+    - name: restart
+      shell: systemctl restart mongod
