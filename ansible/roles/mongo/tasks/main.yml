@@ -24,6 +24,10 @@
   notify:
     - restart mongodb
 
+- name: change /etc/hosts
+  copy:
+    src={{ source_host }} dest={{ dest_host }}
+
 - name: Creates directory
   file:
     path: /var/lib/mongodb
@@ -32,6 +36,11 @@
 - name: Creates directory
   file:
     path: /var/log/mongodb
+    state: directory
+
+- name: Creates directory
+  file:
+    path: /var/log/zabbix
     state: directory
 
 - name: change permission
