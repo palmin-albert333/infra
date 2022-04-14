@@ -18,7 +18,7 @@
   loop:
     - mongodb-org
 
-- name: copy the zabbix config file
+- name: copy the config file
   copy:
     src={{ source_conf }} dest={{ dest_conf }}
   notify:
@@ -37,15 +37,6 @@
   file:
     path: /var/log/mongodb
     state: directory
-
-- name: Creates directory
-  file:
-    path: /var/log/zabbix
-    state: directory
-  notify:
-    - restart zabbix-agent
-
-
 
 - name: change permission
   file:
