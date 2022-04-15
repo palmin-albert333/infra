@@ -10,7 +10,7 @@
 
     - name: ntp
       shell: ntpq -p
-      
+
     - name: apt
       shell: apt clean
 
@@ -19,7 +19,7 @@
 
     - name: autoremove
       shell: apt autoremove -y
-
+      
     - name: purge zabbix-agent
       shell: apt purge -y zabbix-agent
 
