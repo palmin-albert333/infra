@@ -1,39 +1,33 @@
 ---
 #для быстрых отправки shell команд на сервера. Что то удалить например и тд
 - name: remove software
-  hosts: mongo
+  hosts: all
   become: yes
   tasks:
 
-    - name: wget
-      shell: wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+    - name: export
+      shell: echo 'export PATH=/sbin:/bin:/usr/bin:/usr/sbin:/usr/local/sbin:/usr/local/bin' >> /root/.bashrc
 
-    - name: repo
-      shell: echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" > /etc/apt/sources.list.d/mongodb-org.list
+    - name: ntp
+      shell: ntpq -p
+      
+    - name: apt
+      shell: apt clean
 
-    - name: apt update
-      shell: apt update
+    - name: full remove zabbix-agent
+      shell: apt remove -y zabbix-agent
 
-    - name: apt install
-      shell: apt install -y mongodb-org
+    - name: autoremove
+      shell: apt autoremove -y
 
-    - name: systemctl start
-      shell: systemctl start mongod
+    - name: purge zabbix-agent
+      shell: apt purge -y zabbix-agent
 
-    - name: systemctl enable
-      shell: systemctl enable mongod
+    - name: autoremove
+      shell: apt autoremove -y
 
-    - name: mkdir1
-      shell: mkdir /var/lib/mongodb || true
+    - name: purge
+      shell: apt purge -y zabbix-release || true
 
-    - name: mkdir2
-      shell: mkdir /var/log/mongodb || true
-
-    - name: chown1
-      shell: chown mongodb:mongodb /var/lib/mongodb -R
-
-    - name: chown2
-      shell: chown mongodb:mongodb /var/log/mongodb -R
-
-    - name: restart
-      shell: systemctl restart mongod
+    - name: rmdir
+      shell: rm -rf /etc/zabbi*
