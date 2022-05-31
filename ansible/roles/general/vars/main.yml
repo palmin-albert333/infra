@@ -1,3 +1,6 @@
 ---
 ntp_conf_source: ~/infra/ansible/roles/general/files/ntp.conf
 ntp_conf_dest  : /etc/ntp.conf
+
+chrony_conf_source: ~/infra/ansible/roles/general/files/chrony.conf
+chrony_conf_dest  : /etc/chrony.conf

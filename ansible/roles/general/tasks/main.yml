@@ -1,34 +1,62 @@
 ---
 #установка основного программного обеспечения
-- name: install software
-  apt:
-    name: "{{item}}"
-    state: latest
-    update_cache: yes
-    cache_valid_time: 3600
-  loop:
-    - apt-transport-https
-    - ca-certificates
-    - curl
-    - gnupg-agent
-    - gnupg2
-    - pass
-    - software-properties-common
-    - mc
-    - ntp
-    - wget
-    - git
-    - ntp
+- block: #=====Block for Debian=====
+   - name: install software
+     apt:
+       name: "{{item}}"
+       state: latest
+       update_cache: yes
+       cache_valid_time: 86400
+     loop:
+       - apt-transport-https
+       - ca-certificates
+       - curl
+       - gnupg-agent
+       - gnupg2
+       - pass
+       - software-properties-common
+       - mc
+       - ntp
+       - wget
+       - git
+       - ntp
+
+   - name: copy the ntp config file
+     copy:
+       src={{ ntp_conf_source }} dest={{ ntp_conf_dest }}
+       owner=albert
+       group=albert
+       mode=0644
+
+     notify:
+       - restart ntp service
+
+  when: ansible_os_family == "Debian"
+
+- block: #=====Block for CentOS=====
+   - name: install software
+     dnf:
+       name: "{{item}}"
+       state: latest
+       update_cache: True
+     loop:
+       - wget
+       - curl
+       - git
+       - mc
+       - chrony
+       - gnupg2
+
+   - name: copy the chrony config file
+     copy:
+       src={{ chrony_conf_source }} dest={{ chrony_conf_dest }}
+       owner=albert
+       group=albert
+       mode=0644
+     notify:
+       - restart chrony service
+  when: ansible_os_family == "RedHat"
 
 - name: set timezone to Europe/Moscow
   timezone:
     name: Europe/Moscow
-
-- name: copy the ntp config file
-  copy:
-    src={{ ntp_conf_source }} dest={{ ntp_conf_dest }}
-    owner=albert
-    group=albert
-    mode=0644
-  notify:
-    - restart ntp service

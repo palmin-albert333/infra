@@ -5,29 +5,11 @@
   become: yes
   tasks:
 
-    - name: export
-      shell: echo 'export PATH=/sbin:/bin:/usr/bin:/usr/sbin:/usr/local/sbin:/usr/local/bin' >> /root/.bashrc
-
-    - name: ntp
-      shell: ntpq -p
-
-    - name: apt
+    - name: apt clean
       shell: apt clean
 
-    - name: full remove zabbix-agent
-      shell: apt remove -y zabbix-agent
+    - name: apt update
+      shell: apt update
 
-    - name: autoremove
-      shell: apt autoremove -y
-
-    - name: purge zabbix-agent
-      shell: apt purge -y zabbix-agent
-
-    - name: autoremove
-      shell: apt autoremove -y
-
-    - name: purge
-      shell: apt purge -y zabbix-release || true
-
-    - name: rmdir
-      shell: rm -rf /etc/zabbi*
+    - name: apt upgrade
+      shell: apt upgrade
