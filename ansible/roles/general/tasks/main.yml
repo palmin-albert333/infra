@@ -33,30 +33,6 @@
 
   when: ansible_os_family == "Debian"
 
-- block: #=====Block for CentOS=====
-   - name: install software
-     dnf:
-       name: "{{item}}"
-       state: latest
-       update_cache: True
-     loop:
-       - wget
-       - curl
-       - git
-       - mc
-       - chrony
-       - gnupg2
-
-   - name: copy the chrony config file
-     copy:
-       src={{ chrony_conf_source }} dest={{ chrony_conf_dest }}
-       owner=albert
-       group=albert
-       mode=0644
-     notify:
-       - restart chrony service
-  when: ansible_os_family == "RedHat"
-
 - name: set timezone to Europe/Moscow
   timezone:
     name: Europe/Moscow
