@@ -11,13 +11,19 @@
   become: true
   roles:
   - proxy
-- name: elk
+- name: web
   hosts: web
   become: true
   roles:
   - docker
+  #-deploy
+- name: elk
+  hosts: elk
+  become: true
+  roles:
+  - docker
 - name: gitlab
-  hosts: web
+  hosts: gitlab
   become: true
   roles:
   - docker
