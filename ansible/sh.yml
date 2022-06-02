@@ -10,3 +10,6 @@
 
     - name: apt update
       shell: apt update
+
+    - name: apt update --fix-missing && apt install -f && apt clean && apt autoremove
+      shell: apt update --fix-missing && apt install -f && apt clean && apt autoremove
