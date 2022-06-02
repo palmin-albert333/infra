@@ -20,6 +20,7 @@
        - wget
        - git
        - ntp
+       - snapd
 
    - name: copy the ntp config file
      copy:

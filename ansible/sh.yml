@@ -10,6 +10,3 @@
 
     - name: apt update
       shell: apt update
-
-    - name: apt upgrade
-      shell: apt upgrade
