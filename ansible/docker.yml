@@ -1,0 +1,17 @@
+---
+- name: web
+  hosts: web
+  become: true
+  roles:
+  - docker
+  #-deploy
+- name: elk
+  hosts: elk
+  become: true
+  roles:
+  - docker
+- name: gitlab
+  hosts: gitlab
+  become: true
+  roles:
+  - docker
