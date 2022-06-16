@@ -23,11 +23,18 @@
       state: present
       filename: 'kubernetes'
 
+   - name: install kubernetes-cni
+     apt:
+       name: kubernetes-cni
+       state: present
+       update_cache: true
+
    - name: install kubelet
      apt:
        name: kubelet=1.14.0-00
        state: present
        update_cache: true
+
 
    - name: install kubeadm
      apt:
