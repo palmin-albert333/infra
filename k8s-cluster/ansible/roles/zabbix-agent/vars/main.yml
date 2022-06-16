@@ -1,3 +1,0 @@
----
-source_conf:   ~/infra/ansible/roles/zabbix-agent/files/zabbix_agentd.conf
-dest_conf  :   /etc/zabbix/zabbix_agentd.conf
