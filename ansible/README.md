@@ -1,3 +1,4 @@
 # infra
 ## Содержимое данного плэйбука для развёртывания обычной инфраструктуры без kubernetes
-### файл group_vars/all.example переименовать на all и подставить свой sudo пароль
+
+ansible-playbook --vault-password-file=.ansible_vault_pass infra.yml
