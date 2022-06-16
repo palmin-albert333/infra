@@ -27,3 +27,6 @@ rs.remove("mongo2:27017")
 
 Резервное копирование базы данных my_db
 mongodump --db my_db --out /var/backups/mongobackups/`date +"%m-%d-%y"`
+
+
+ansible-playbook --vault-password-file=.ansible_vault_pass mongo.yml
