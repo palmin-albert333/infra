@@ -1,11 +1,7 @@
+---
 - hosts: master
   become: yes
   tasks:
-    - name: initialize the cluster
-      shell: kubeadm init --pod-network-cidr=10.244.0.0/16 >> cluster_initialized.txt
-      args:
-        chdir: $HOME
-        creates: cluster_initialized.txt
 
     - name: create .kube directory
       become: yes
@@ -21,6 +17,12 @@
         dest: /home/ubuntu/.kube/config
         remote_src: yes
         owner: ubuntu
+
+    - name: initialize the cluster
+      shell: kubeadm init --pod-network-cidr=10.244.0.0/16 >> cluster_initialized.txt
+      args:
+        chdir: $HOME
+        creates: cluster_initialized.txt
 
     - name: install Pod network
       become: yes
