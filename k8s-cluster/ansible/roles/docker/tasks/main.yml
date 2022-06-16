@@ -30,7 +30,7 @@
 - name: install docker-compose
   apt: pkg=docker-compose state=latest
 
-- name: add user albert for group docker
-  user: name=albert
+- name: add user ubuntu for group docker
+  user: name=ubuntu
         group=docker
         shell=/bin/bash
