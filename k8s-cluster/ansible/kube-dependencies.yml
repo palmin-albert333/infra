@@ -19,25 +19,22 @@
 
    - name: add Kubernetes' APT repository
      apt_repository:
-      repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+      repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
       state: present
       filename: 'kubernetes'
 
-
    - name: install kubelet
      apt:
-       name: kubelet
+       name: kubele
        state: present
        update_cache: true
-
 
    - name: install kubeadm
      apt:
        name: kubeadm
        state: present
-       update_cache: true
 
-- hosts: kuber-master
+- hosts: master
   become: yes
   tasks:
    - name: install kubectl

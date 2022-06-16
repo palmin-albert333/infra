@@ -1,5 +1,5 @@
-[kuber-master]
+[master]
 kuber-master1 ansible_host=192.168.18.211
-[kuber-worker]
+[worker]
 kuber-worker1 ansible_host=192.168.18.212
 kuber-worker2 ansible_host=192.168.18.213
