@@ -1,2 +1,2 @@
-.ansible_vault_pass
+group_vars/all
 sh.yml

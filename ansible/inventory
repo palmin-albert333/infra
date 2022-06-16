@@ -1,3 +1,5 @@
+[all:vars]
+ansible_become_password=15426378
 [proxy]
 proxy1 ansible_host=192.168.18.240
 [web]
