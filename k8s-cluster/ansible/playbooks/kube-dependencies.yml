@@ -13,13 +13,13 @@
       state: present
       filename: 'kubernetes'
 
-   - name: install kubelet=1.19.5
+   - name: install kubelet=1.14.8
      apt:
        name: kubelet
        state: present
        update_cache: true
 
-   - name: install kubeadm=1.19.5
+   - name: install kubeadm=1.14.8
      apt:
        name: kubeadm
        state: present
@@ -27,7 +27,7 @@
 - hosts: master
   become: yes
   tasks:
-   - name: install kubectl=1.19.5
+   - name: install kubectl=1.14.8
      apt:
        name: kubectl
        state: present
