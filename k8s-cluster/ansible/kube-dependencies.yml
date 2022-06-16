@@ -25,7 +25,7 @@
 
    - name: install kubelet
      apt:
-       name: kubele
+       name: kubelet
        state: present
        update_cache: true
 
