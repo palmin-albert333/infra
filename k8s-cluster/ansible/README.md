@@ -11,3 +11,11 @@ ansible-playbook --vault-password-file=.ansible_vault_pass swapoff.yml
 ansible-playbook --vault-password-file=.ansible_vault_pass kube-dependencies.yml
 
 ansible-playbook --vault-password-file=.ansible_vault_pass master.yml
+
+ansible-playbook --vault-password-file=.ansible_vault_pass worker.yml
+
+
+- name: install kubernetes-cni
+  apt:
+    name: kubernetes-cni
+    state: present
