@@ -23,11 +23,6 @@
       state: present
       filename: 'kubernetes'
 
-   #- name: install kubernetes-cni
-     #apt:
-      # name: kubernetes-cni
-      # state: present
-      # update_cache: true
 
    - name: install kubelet
      apt:
@@ -40,6 +35,7 @@
      apt:
        name: kubeadm
        state: present
+       update_cache: true
 
 - hosts: kuber-master
   become: yes
