@@ -3,6 +3,6 @@
 - import_playbook: proxy.yml
 - import_playbook: docker.yml
 - import_playbook: zabbix-agent.yml
+- import_playbook: elk-beats.yml
 #- import_playbook: mongo.yml
-#- import_playbook: elk-beats.yml
 #- import_playbook: deploy.yml
