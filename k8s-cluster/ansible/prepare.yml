@@ -3,5 +3,3 @@
 - import_playbook: ./playbooks/swapoff.yml
 - import_playbook: ./playbooks/initial.yml
 - import_playbook: ./playbooks/kube-dependencies.yml
-#- import_playbook: ./playbooks/master.yml
-#- import_playbook: ./playbooks/worker.yml
