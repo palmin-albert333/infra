@@ -13,7 +13,7 @@
 - name: install repo
   apt:
     name: "~/{{item}}"
-    state: latest
+    state: present
   loop:
     - packetbeat-7.16.0-amd64.deb
     - metricbeat-7.16.0-amd64.deb
