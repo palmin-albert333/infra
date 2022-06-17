@@ -23,7 +23,7 @@
        state: started
        enabled: yes
      loop:
-       - packebeat
+       - packetbeat
        - metricbeat
        - auditbeat
        - heartbeat
