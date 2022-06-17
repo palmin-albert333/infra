@@ -1,47 +1,41 @@
 ---
-#установка агентов elk стэка
-- name: wget software
-  get_url:
-    url: "{{item}}"
-    dest: "~/"
-  loop:
-   - https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.16.0-amd64.deb
-   - https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.16.0-amd64.deb
-   - https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.16.0-amd64.deb
-   - https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.16.0-amd64.deb
+- block: #=====Block for Ubuntu=====
 
-- name: install repo
-  apt:
-    name: "~/{{item}}"
-    state: present
-  loop:
-    - packetbeat-7.16.0-amd64.deb
-    - metricbeat-7.16.0-amd64.deb
-    - heartbeat-7.16.0-amd64.deb
-    - auditbeat-7.16.0-amd64.deb
+   - name: add repository docker
+     apt_repository:
+       repo: deb [trusted=yes] https://mirror.yandex.ru/mirrors/elastic/8/ stable main
+       state: present
 
-- name: apt update
-  apt:
-    update_cache: yes
-    cache_valid_time: 3600
+   - name: install software
+     apt:
+       name: "{{item}}"
+       state: present
+       update_cache: true
+     loop:
+       - packetbeat
+       - metricbeat
+       - heartbeat
+       - auditbeat
 
-- name: start and enable
-  service:
-    name: "{{ item }}"
-    state: started
-    enabled: yes
-  loop:
-    - packebeat
-    - metricbeat
-    - auditbeat
-    - heartbeat
+   - name: start and enable
+     service:
+       name: "{{ item }}"
+       state: started
+       enabled: yes
+     loop:
+       - packebeat
+       - metricbeat
+       - auditbeat
+       - heartbeat
 
-- name: copy config files for beats
-  copy: src={{ item.src }} dest={{ item.dest }}
-  with_items:
-    - { src: '~/infra/ansible/roles/elk-beats/files/packetbeat.yml', dest: '/etc/packetbeat/packetbeat.yml' }
-    - { src: '~/infra/ansible/roles/elk-beats/files/metricbeat.yml', dest: '/etc/metricbeat/metricbeat.yml' }
-    - { src: '~/infra/ansible/roles/elk-beats/files/heartbeat.yml', dest: '/etc/heartbeat/heartbeat.yml' }
-    - { src: '~/infra/ansible/roles/elk-beats/files/auditbeat.yml', dest: '/etc/auditbeat/auditbeat.yml' }
-  notify:
-    - restart beats
+   - name: copy config files for beats
+     copy: src={{ item.src }} dest={{ item.dest }}
+     with_items:
+       - { src: '~/infra/ansible/roles/elk-beats/files/packetbeat.yml', dest: '/etc/packetbeat/packetbeat.yml' }
+       - { src: '~/infra/ansible/roles/elk-beats/files/metricbeat.yml', dest: '/etc/metricbeat/metricbeat.yml' }
+       - { src: '~/infra/ansible/roles/elk-beats/files/heartbeat.yml', dest: '/etc/heartbeat/heartbeat.yml' }
+       - { src: '~/infra/ansible/roles/elk-beats/files/auditbeat.yml', dest: '/etc/auditbeat/auditbeat.yml' }
+     notify:
+       - restart beats
+
+  when: ansible_distribution == "Ubuntu"
