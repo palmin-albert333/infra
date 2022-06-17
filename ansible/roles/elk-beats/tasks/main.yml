@@ -1,25 +1,46 @@
 ---
 #установка агентов elk стэка
+- name: install packetbeat
+  get_url:
+   url="https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.16.0-amd64.deb"
+   dest="~/"
+- name: apt install zabbix 6.0 release in ubuntu
+  apt: deb="https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.16.0-amd64.deb"
+
+
+
+- name: install metricbeat
+  get_url:
+   url="https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.16.0-amd64.deb"
+   dest="~/"
+- name: apt install zabbix 6.0 release in ubuntu
+  apt: deb="https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.16.0-amd64.deb"
+
+
+
+- name: install heartbeat
+  get_url:
+   url="https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.16.0-amd64.deb"
+   dest="~/"
+- name: apt install zabbix 6.0 release in ubuntu
+  apt: deb="https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.16.0-amd64.deb"
+
+
+- name: install auditbeat
+  get_url:
+   url="https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.16.0-amd64.deb"
+   dest="~/"
+- name: apt install zabbix 6.0 release in ubuntu
+  apt: deb="https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.16.0-amd64.deb"
+
+
+
 - name: apt update
   apt:
     update_cache: yes
     cache_valid_time: 3600
 
-- name: install packetbeat
-  apt:
-    deb: https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.16.0-amd64.deb
 
-- name: install metricbeat
-  apt:
-    deb: https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-7.16.0-amd64.deb
-
-- name: install heartbeat
-  apt:
-    deb: https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-7.16.0-amd64.deb
-
-- name: install auditbeat
-  apt:
-    deb: https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.16.0-amd64.deb
 
 - name: start and enable
   service:
