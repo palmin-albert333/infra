@@ -24,12 +24,6 @@
       state: present
       filename: 'kubernetes'
 
-   #- name: install kubernetes-cni
-    # apt:
-    #   name: kubernetes-cni
-    #   state: present
-    #   update_cache: true
-
    - name: install kubelet
      apt:
        name: kubelet=1.14.8-00

@@ -1,33 +1,21 @@
 ---
-- block: #=====Block for Debian=====
+- block: #=====Block for Ubuntu=====
 
-   - name: install repo zabbix 6.0 for debian
+   - name: download zabbix ubuntu release deb file
+     get_url:
+       url="https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu{{ ansible_distribution_version }}_all.deb"
+       dest="~/"
+
+   - name: apt install Zabbix release in Ubuntu/Debian
+     apt: deb="~/zabbix-release_6.0-1+ubuntu{{ ansible_distribution_version }}_all.deb"
+
+   - name: apt-get update
      apt:
-       deb: wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu{{ ansible_distribution_version }}_all.deb
+       update_cache: true
+       cache_valid_time: 86400
 
-   - name: apt update
-     apt:
-       update_cache: yes
-       cache_valid_time: 3600
-
-   - name: install zabbix-agent
-     apt: pkg=zabbix-agent state=latest
-
-   - name: creates directory
-     file:
-       path: /etc/zabbix/zabbix_agentd.d
-       state: directory
-       owner: "zabbix"
-       group: "zabbix"
-       recurse: yes
-
-   - name: creates directory
-     file:
-       path: /var/log/zabbix
-       state: directory
-       owner: "zabbix"
-       group: "zabbix"
-       recurse: yes
+   - name: apt install zabbix agent
+     apt: name=zabbix-agent
 
    - name: copy the zabbix config file
      copy:
@@ -35,4 +23,4 @@
      notify:
       - restart agent
 
-  when: ansible_os_family == "Debian"
+  when: ansible_distribution == "Ubuntu"
