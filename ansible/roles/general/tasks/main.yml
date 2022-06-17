@@ -1,6 +1,6 @@
 ---
 #установка основного программного обеспечения
-- block: #=====Block for Debian=====
+- block: #=====Block for Ubuntu=====
    - name: install software
      apt:
        name: "{{item}}"
@@ -32,7 +32,7 @@
      notify:
        - restart ntp service
 
-  when: ansible_os_family == "Debian"
+  when: ansible_distribution == "Ubuntu"
 
 - name: set timezone to Europe/Moscow
   timezone:
