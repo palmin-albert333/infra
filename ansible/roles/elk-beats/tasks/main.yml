@@ -1,7 +1,7 @@
 ---
 - block: #=====Block for Ubuntu=====
 
-   - name: add repository docker
+   - name: add repository elastic
      apt_repository:
        repo: deb [trusted=yes] https://mirror.yandex.ru/mirrors/elastic/8/ stable main
        state: present
@@ -12,10 +12,10 @@
        state: present
        update_cache: true
      loop:
-       - packetbeat
-       - metricbeat
-       - heartbeat-elastic
-       - auditbeat
+       - packetbeat=8.1.1
+       - metricbeat=8.1.1
+       - heartbeat-elastic=8.1.1
+       - auditbeat=8.1.1
 
    - name: start and enable
      service:
