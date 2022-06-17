@@ -34,7 +34,6 @@
   apt: deb="https://artifacts.elastic.co/downloads/beats/auditbeat/auditbeat-7.16.0-amd64.deb"
 
 
-
 - name: apt update
   apt:
     update_cache: yes
