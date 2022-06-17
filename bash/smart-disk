@@ -15,19 +15,19 @@ if smartctl -s on -a /dev/sdb | grep PASSED;
 then
   echo "SMART /dev/sdb is GOOD!"
 else
-  curl -s "https://api.telegram.org/bot<my_token>/sendMessage?chat_id=-742976591&text=Proxmox1%20SMART%20/dev/sda%20is%20BAD!"
+  curl -s "https://api.telegram.org/bot<my_token>/sendMessage?chat_id=-742976591&text=Proxmox1%20SMART%20/dev/sdb%20is%20BAD!"
 fi
 
 if smartctl -s on -a /dev/sdc | grep OK;
 then
   echo "SMART /dev/sdc is GOOD!"
 else
-  curl -s "https://api.telegram.org/bot<my_token>/sendMessage?chat_id=-742976591&text=Proxmox1%20SMART%20/dev/sda%20is%20BAD!"
+  curl -s "https://api.telegram.org/bot<my_token>/sendMessage?chat_id=-742976591&text=Proxmox1%20SMART%20/dev/sdc%20is%20BAD!"
 fi
 
 if smartctl -s on -a /dev/sdd | grep OK;
 then
   echo "SMART /dev/sdd is GOOD!"
 else
-  curl -s "https://api.telegram.org/bot<my_token>/sendMessage?chat_id=-742976591&text=Proxmox1%20SMART%20/dev/sda%20is%20BAD!"
+  curl -s "https://api.telegram.org/bot<my_token>/sendMessage?chat_id=-742976591&text=Proxmox1%20SMART%20/dev/sdd%20is%20BAD!"
 fi
