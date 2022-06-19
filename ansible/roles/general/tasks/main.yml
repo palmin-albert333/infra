@@ -4,8 +4,8 @@
    - name: install software
      apt:
        name: "{{item}}"
-       state: latest
-       update_cache: yes
+       state: present
+       update_cache: true
        cache_valid_time: 3600
      loop:
        - apt-transport-https

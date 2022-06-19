@@ -1,11 +1,10 @@
 ---
 - name: apt update
   apt:
-    update_cache: yes
-    cache_valid_time: 3600
+    update_cache: true
 
 - name: install nginx
-  apt: pkg=nginx state=latest
+  apt: pkg=nginx state=present
 
 - name: start nginx
   service:
