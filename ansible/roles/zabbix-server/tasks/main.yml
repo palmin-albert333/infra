@@ -25,5 +25,6 @@
        - php7.2-pgsql
        - zabbix-apache-conf
        - zabbix-sql-scripts
+       - zabbix-agent
 
   when: ansible_distribution == "Ubuntu"
