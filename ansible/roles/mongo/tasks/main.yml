@@ -2,12 +2,12 @@
 #для установки субд mongodb
 - name: add key
   apt_key:
-    url: https://www.mongodb.org/static/pgp/server-4.4.asc
+    url: https://www.mongodb.org/static/pgp/server-3.2.asc
     state: present
 
 - name: add repository mongo
   apt_repository:
-    repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.4 multiverse
+    repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/3.2 multiverse
     state: present
 
 - name: install software
