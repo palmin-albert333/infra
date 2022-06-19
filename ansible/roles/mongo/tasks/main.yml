@@ -1,22 +1,21 @@
 ---
 #для установки субд mongodb
-- name: add key
-  apt_key:
-    url: https://www.mongodb.org/static/pgp/server-3.2.asc
-    state: present
+- name: get repo mongo
+  get_url:
+    url="https://mirror.yandex.ru/mirrors/repo.mongodb.org/apt/ubuntu/dists/{{ ansible_distribution_release }}/mongodb-org/3.6/multiverse/binary-amd64/mongodb-org-server_3.6.23_amd64.deb"
+    dest="~/"
 
-- name: add repository mongo
-  apt_repository:
-    repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/3.2 multiverse
-    state: present
+- name: install repo mongo
+  apt: deb="~/mongodb-org-server_3.6.23_amd64.deb"
+
 
 - name: install software
   apt:
     name: "{{item}}"
-    state: latest
-    update_cache: yes
+    state: present
+    update_cache: true
   loop:
-    - mongodb-org
+    - mongodb-org-server
 
 - name: copy the config file
   copy:
