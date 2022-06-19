@@ -11,6 +11,7 @@
        name: "{{item}}"
        state: present
        update_cache: true
+       cache_valid_time: 3600
      loop:
        - packetbeat=8.1.1
        - metricbeat=8.1.1

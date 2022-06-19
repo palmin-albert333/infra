@@ -12,6 +12,7 @@
    - name: apt-get update
      apt:
        update_cache: true
+       cache_valid_time: 3600
 
    - name: apt install zabbix agent 6.0
      apt: name=zabbix-agent state=present
