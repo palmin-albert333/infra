@@ -1,40 +1,43 @@
 ---
-#для установки субд mongodb
-- name: get repo mongo
-  get_url:
-    url: "https://mirror.yandex.ru/mirrors/repo.mongodb.org/apt/ubuntu/dists/{{ ansible_distribution_release }}/mongodb-org/3.6/multiverse/binary-amd64/mongodb-org-server_3.6.23_amd64.deb"
-    dest: "~/"
+- block: #=====Block for Ubuntu=====
 
-- name: install repo mongo
-  apt: deb="~/mongodb-org-server_3.6.23_amd64.deb"
+   - name: get repo mongo
+     get_url:
+       url: "https://mirror.yandex.ru/mirrors/repo.mongodb.org/apt/ubuntu/dists/{{ ansible_distribution_release }}/mongodb-org/3.6/multiverse/binary-amd64/mongodb-org-server_3.6.23_amd64.deb"
+       dest: "~/"
 
-- name: install software
-  apt:
-    name: "{{item}}"
-    state: present
-    update_cache: true
-  loop:
-    - mongodb-org-server
+   - name: install repo mongo
+     apt: deb="~/mongodb-org-server_3.6.23_amd64.deb"
 
-- name: copy the config file
-  copy:
-    src={{ source_conf }} dest={{ dest_conf }}
-  notify:
-    - restart mongodb
+   - name: install software
+     apt:
+       name: "{{item}}"
+       state: present
+       update_cache: true
+     loop:
+       - mongodb-org-server
 
-- name: Creates directory
-  file:
-    path: /var/lib/mongodb
-    state: directory
+   - name: copy the config file
+     copy:
+       src={{ source_conf }} dest={{ dest_conf }}
+     notify:
+       - restart mongodb
 
-- name: Creates directory
-  file:
-    path: /var/log/mongodb
-    state: directory
+   - name: Creates directory
+     file:
+       path: /var/lib/mongodb
+       state: directory
 
-- name: change permission
-  file:
-    path: /var/lib/mongodb
-    owner: "mongodb"
-    group: "mongodb"
-    recurse: yes
+   - name: Creates directory
+     file:
+       path: /var/log/mongodb
+       state: directory
+
+   - name: change permission
+     file:
+       path: /var/lib/mongodb
+       owner: "mongodb"
+       group: "mongodb"
+       recurse: yes
+
+  when: ansible_distribution == "Ubuntu"
