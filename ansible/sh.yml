@@ -1,9 +1,0 @@
----
-#для быстрых отправки shell команд на сервера. Что то удалить например и тд
-- name: remove software
-  hosts: mongo
-  become: yes
-  tasks:
-
-    - name: dpkg
-      shell: dpkg --configure -a
