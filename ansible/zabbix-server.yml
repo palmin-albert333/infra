@@ -1,0 +1,6 @@
+---
+- name: install zabbix-server 6.0 nginx+postgresql
+  hosts: zabbix
+  become: true
+  roles:
+  - zabbix-server

@@ -1,5 +1,7 @@
 ---
 - import_playbook: general.yml
+- import_playbook: zabbix-server.yml
+- import_playbook: elk-server.yml
 - import_playbook: proxy.yml
 - import_playbook: docker.yml
 - import_playbook: zabbix-agent.yml
