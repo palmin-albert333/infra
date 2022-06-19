@@ -1,6 +1,5 @@
 ---
-- name: remove software
-  hosts: all
+- hosts: all
   become: yes
   tasks:
     - name: upgrade
