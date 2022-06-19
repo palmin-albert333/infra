@@ -9,11 +9,6 @@
    - name: apt install zabbix 6.0 release in ubuntu
      apt: deb="~/zabbix-release_6.0-1+ubuntu{{ ansible_distribution_version }}_all.deb"
 
-   - name: apt-get update
-     apt:
-       update_cache: true
-       cache_valid_time: 86400
-
    - name: install software
      apt:
        name: "{{item}}"
