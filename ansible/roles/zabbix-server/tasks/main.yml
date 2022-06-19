@@ -18,7 +18,7 @@
        - zabbix-server-pgsql
        - zabbix-frontend-php
        - php7.2-pgsql
-       - zabbix-apache-conf
+       - zabbix-nginx-conf
        - zabbix-sql-scripts
        - zabbix-agent
 
