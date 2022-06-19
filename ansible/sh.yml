@@ -1,15 +1,9 @@
 ---
 #для быстрых отправки shell команд на сервера. Что то удалить например и тд
 - name: remove software
-  hosts: all
+  hosts: mongo
   become: yes
   tasks:
 
-    - name: apt clean
-      shell: apt clean
-
-    - name: apt update
-      shell: apt update
-
-    - name: apt update --fix-missing && apt install -f && apt clean && apt autoremove
-      shell: apt update --fix-missing && apt install -f && apt clean && apt autoremove
+    - name: dpkg
+      shell: dpkg --configure -a

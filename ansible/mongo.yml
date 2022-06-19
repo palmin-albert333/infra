@@ -2,4 +2,4 @@
   hosts: mongo
   become: true
   roles:
-  - docker
+  - mongo
