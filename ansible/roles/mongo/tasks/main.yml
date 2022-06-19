@@ -5,16 +5,8 @@
     url: "https://mirror.yandex.ru/mirrors/repo.mongodb.org/apt/ubuntu/dists/{{ ansible_distribution_release }}/mongodb-org/3.6/multiverse/binary-amd64/mongodb-org-server_3.6.23_amd64.deb"
     dest: "~/"
 
-- name: get repo mongo
-  get_url:
-    url: "https://mirror.yandex.ru/mirrors/repo.mongodb.org/apt/ubuntu/dists/{{ ansible_distribution_release }}/mongodb-org/3.6/multiverse/binary-amd64/mongodb-org-shell_3.6.23_amd64.deb"
-    dest: "~/"
-
 - name: install repo mongo
   apt: deb="~/mongodb-org-server_3.6.23_amd64.deb"
-
-- name: install repo mongo
-  apt: deb="~/mongodb-org-shell_3.6.23_amd64.deb"
 
 - name: install software
   apt:
@@ -23,7 +15,6 @@
     update_cache: true
   loop:
     - mongodb-org-server
-    - mongodb-org-shell
 
 - name: copy the config file
   copy:
