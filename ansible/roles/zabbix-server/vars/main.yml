@@ -1,4 +1,5 @@
 ---
 # vars file for zabbix-server
 zabbix_dbname: zabbix
+zabbix_dbuser: zabbix
 zabbix_dbpass: 15426378aa

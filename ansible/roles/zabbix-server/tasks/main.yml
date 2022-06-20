@@ -41,7 +41,7 @@
 
 - name: add apt signing key
   apt_key:
-    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    url  : https://www.postgresql.org/media/keys/ACCC4CF8.asc
     state: present
 
 - name: install pgsql
@@ -52,32 +52,24 @@
   notify:
     - enable pgsql
 
-- name: Create postgres user for my app
-  become: yes
-  become_user: postgres
-  postgresql_user:
-    name    : "{{ zabbix_dbname }}"
-    password: "{{ zabbix_dbpass }}"
-
-- name: zcat
-  shell: zcat /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
+#создание пользователя и импорт таблицы вручную пока
 
 - name: copy the nginx config file
   copy:
-    src: ~/infra/ansible/roles/zabbix-server/files/nginx.conf
+    src : ~/infra/ansible/roles/zabbix-server/files/nginx.conf
     dest: /etc/zabbix/nginx.conf
   notify:
     - restart nginx
 - name: create symlink
   file:
-    src: /etc/zabbix/nginx.conf
-    dest: /etc/nginx/sites-enabled/default
+    src  : /etc/zabbix/nginx.conf
+    dest : /etc/nginx/sites-enabled/default
     state: link
 
 - name: restart service
   service:
-    name: "{{item}}"
-    state: restarted
+    name   : "{{item}}"
+    state  : restarted
     enabled: yes
   loop:
     - zabbix-server
