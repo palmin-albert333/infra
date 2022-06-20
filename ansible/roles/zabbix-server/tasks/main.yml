@@ -16,10 +16,13 @@
   loop:
     - zabbix-server-pgsql
     - zabbix-frontend-php
-    - php7.2-pgsql
+    - php7.4-pgsql
     - zabbix-nginx-conf
     - zabbix-sql-scripts
     - zabbix-agent
+
+- name: rm apache2
+  shell: apt remove apache2*
 
 - name: install repo pgsql 14
   shell: |
