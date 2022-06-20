@@ -1,26 +1,41 @@
 ---
-- block: #=====Block for Ubuntu=====
+- name: download zabbix 6.0 ubuntu release deb file
+  get_url:
+    url: "https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu{{ ansible_distribution_version }}_all.deb"
+    dest: "~/"
 
-   - name: download zabbix 6.0 ubuntu release deb file
-     get_url:
-       url: "https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu{{ ansible_distribution_version }}_all.deb"
-       dest: "~/"
+- name: apt install zabbix 6.0 release in ubuntu
+  apt: deb="~/zabbix-release_6.0-1+ubuntu{{ ansible_distribution_version }}_all.deb"
 
-   - name: apt install zabbix 6.0 release in ubuntu
-     apt: deb="~/zabbix-release_6.0-1+ubuntu{{ ansible_distribution_version }}_all.deb"
+- name: install software
+  apt:
+    name: "{{item}}"
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+  loop:
+    - zabbix-server-pgsql
+    - zabbix-frontend-php
+    - php7.2-pgsql
+    - zabbix-nginx-conf
+    - zabbix-sql-scripts
+    - zabbix-agent
 
-   - name: install software
-     apt:
-       name: "{{item}}"
-       state: present
-       update_cache: true
-       cache_valid_time: 3600
-     loop:
-       - zabbix-server-pgsql
-       - zabbix-frontend-php
-       - php7.2-pgsql
-       - zabbix-nginx-conf
-       - zabbix-sql-scripts
-       - zabbix-agent
+- name: install repo pgsql 14
+  shell: |
+    echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+  args:
+    warn: no
 
-  when: ansible_distribution == "Ubuntu"
+- name: add apt signing key
+  apt_key:
+    url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    state: present
+
+- name: install pgsql
+  apt:
+    name: postgresql-14
+    update_cache: true
+    cache_valid_time: 3600
+  notify:
+    - enable pgsql
