@@ -39,17 +39,3 @@
     #cache_valid_time: 3600
   notify:
     - enable pgsql
-
-- name: copy the nginx config file
-  copy:
-    src: ~/infra/ansible/roles/zabbix-server/files/static.cfg
-    dest: /etc/nginx/sites-available/static.cfg
-  notify:
-    - restart nginx
-
-- name: create symlink
-  file:
-    src: /etc/nginx/sites-available/static.cfg
-    dest: /etc/nginx/sites-enabled/default
-    state: link
- 
