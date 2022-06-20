@@ -42,3 +42,36 @@
     #cache_valid_time: 3600
   notify:
     - enable pgsql
+
+- name: Create postgres user for my app
+  become: yes
+  become_user: postgres
+  postgresql_user:
+    name: "zabbix"
+    password: "15426378aa"
+
+- name: zcat
+  shell: zcat /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
+
+- name: copy the nginx config file
+  copy:
+    src: ~/infra/ansible/roles/zabbix-server/files/nginx.conf
+    dest: /etc/zabbix/nginx.conf
+  notify:
+    - restart nginx
+- name: create symlink
+  file:
+    src: /etc/zabbix/nginx.conf
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+
+- name: restart service
+  service:
+    name: "{{item}}"
+    state: restarted
+    enabled: yes
+  loop:
+    - zabbix-server
+    - zabbix-agent
+    - nginx
+    - php7.4-fpm
