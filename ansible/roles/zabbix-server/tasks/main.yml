@@ -22,7 +22,7 @@
     - zabbix-agent
 
 - name: rm apache2
-  shell: apt remove apache2*
+  shell: apt remove -y apache2*
 
 - name: install repo pgsql 14
   shell: |
