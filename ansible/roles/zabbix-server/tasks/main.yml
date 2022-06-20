@@ -52,8 +52,6 @@
   notify:
     - enable pgsql
 
-#создание пользователя и импорт таблицы вручную пока
-
 - name: copy the nginx config file
   copy:
     src : ~/infra/ansible/roles/zabbix-server/files/nginx.conf
@@ -65,6 +63,8 @@
     src  : /etc/zabbix/nginx.conf
     dest : /etc/nginx/sites-enabled/default
     state: link
+
+#создание пользователя и импорт таблицы вручную пока
 
 - name: restart service
   service:
