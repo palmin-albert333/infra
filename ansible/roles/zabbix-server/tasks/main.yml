@@ -1,7 +1,7 @@
 ---
 - name: download zabbix 6.0 ubuntu release deb file
   get_url:
-    url: "http://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu{{ ansible_distribution_version }}_all.deb"
+    url: "https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu{{ ansible_distribution_version }}_all.deb"
     dest: "~/"
 
 - name: apt install zabbix 6.0 release in ubuntu
@@ -20,6 +20,15 @@
     - zabbix-nginx-conf
     - zabbix-sql-scripts
     - zabbix-agent
+
+- name: remove apache2 #зависимостями почему то устанавливается apache2. Это временно исправляет проблему
+  apt:
+    name: "{{item}}"
+    state: absent
+    update_cache: true
+    #cache_valid_time: 86400
+  loop:
+    - apache2*
 
 - name: rm apache2
   shell: apt remove -y apache2*
@@ -47,8 +56,8 @@
   become: yes
   become_user: postgres
   postgresql_user:
-    name: "zabbix"
-    password: "15426378aa"
+    name    : "{{ zabbix_dbname }}"
+    password: "{{ zabbix_dbpass }}"
 
 - name: zcat
   shell: zcat /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix
