@@ -12,7 +12,7 @@
     name: "{{item}}"
     state: present
     update_cache: true
-    cache_valid_time: 3600
+    #cache_valid_time: 86400
   loop:
     - zabbix-server-pgsql
     - zabbix-frontend-php
@@ -36,6 +36,20 @@
   apt:
     name: postgresql-14
     update_cache: true
-    cache_valid_time: 3600
+    #cache_valid_time: 3600
   notify:
     - enable pgsql
+
+- name: copy the nginx config file
+  copy:
+    src: ~/infra/ansible/roles/zabbix-server/files/static.cfg
+    dest: /etc/nginx/sites-available/static.cfg
+  notify:
+    - restart nginx
+
+- name: create symlink
+  file:
+    src: /etc/nginx/sites-available/static.cfg
+    dest: /etc/nginx/sites-enabled/default
+    state: link
+ 

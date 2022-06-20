@@ -2,3 +2,6 @@
 # handlers file for zabbix-server
 - name: enable pgsql
   service: name=postgresql state=started enabled=yes
+  
+- name: restart nginx
+  service: name=nginx state=reloaded
