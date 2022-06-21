@@ -67,3 +67,14 @@
     src  : /etc/zabbix/nginx.conf
     dest : /etc/nginx/sites-enabled/default
     state: link
+
+
+- name: unarchive zabbix schema
+  ansible.builtin.command:
+    cmd: gunzip /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql.gz
+    creates: /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql
+  notify:
+    - import zabbix schema
+    - restart zabbix_server
+  loop_control:
+    label: "{{ item.path }}"
