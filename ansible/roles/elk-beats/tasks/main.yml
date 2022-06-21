@@ -30,7 +30,7 @@
        - auditbeat
 
    - name: copy config files for beats
-     copy: src={{ item.src }} dest={{ item.dest }}
+     template: src={{ item.src }} dest={{ item.dest }}
      loop:
        - { src: 'packetbeat.yml.j2', dest: '/etc/packetbeat/packetbeat.yml' }
        - { src: 'metricbeat.yml.j2', dest: '/etc/metricbeat/metricbeat.yml' }
@@ -38,13 +38,5 @@
        - { src: 'auditbeat.yml.j2', dest: '/etc/auditbeat/auditbeat.yml' }
      notify:
        - restart beats
-
-
-   - name: copy config files
-     template: src={{ item.src }} dest={{ item.dest }}
-     loop:
-       - { src: 'nginx.conf.j2', dest: '/etc/zabbix/nginx.conf' }
-     notify:
-       - restart restart beats
 
   when: ansible_distribution == "Ubuntu"
