@@ -52,18 +52,15 @@
 - name: Create a new database
   become_user: postgres
   community.general.postgresql_db:
-    name: "{{ db_name }}"
-    stat: present
+    name="{{ db_name }}"
+    state=present
 
-- name: copy config files for zabbix-server
-  copy: src={{ item.src }} dest={{ item.dest }}
-  loop:
-    - { src: '~/infra/ansible/roles/zabbix-server/files/zabbix_server.conf', dest: '/etc/zabbix/zabbix_server.conf' }
-    - { src: '~/infra/ansible/roles/zabbix-server/files/php-fpm.conf', dest: '/etc/zabbix/php-fpm.conf' }
-    - { src: '~/infra/ansible/roles/zabbix-server/files/zabbix.conf.php', dest: '/etc/zabbix/web/zabbix.conf.php' }
-    - { src: '~/infra/ansible/roles/zabbix-server/files/nginx.conf', dest: '/etc/zabbix/nginx.conf' }
+- name: copy the nginx config file
+  copy:
+    src: ~/infra/ansible/roles/zabbix-server/files/nginx.conf
+    dest: /etc/zabbix/nginx.conf
   notify:
-    - restart services
+    - restart nginx
 
 - name: create symlink
   file:

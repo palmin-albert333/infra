@@ -5,17 +5,3 @@
 
 - name: restart nginx
   service: name=nginx state=restarted
-
-- name: restart zabbix_server
-  service: name=zabbix-server state=restarted
-
-- name: restart services
-  service:
-    name   : "{{item}}"
-    state  : restarted
-    enabled: yes
-  loop:
-    - zabbix-server
-    - nginx
-    - php7.4-fpm #7.2 если ubuntu18
-    - nginx
