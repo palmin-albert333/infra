@@ -62,7 +62,7 @@
     src: ~/infra/ansible/roles/zabbix-server/files/nginx.conf
     dest: /etc/zabbix/nginx.conf
   notify:
-    - restart nginx
+    - restart services
 
 - name: create symlink
   file:

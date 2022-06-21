@@ -3,5 +3,10 @@
 - name: enable pgsql
   service: name=postgresql state=started enabled=yes
 
-- name: restart nginx
-  service: name=nginx state=restarted
+- name: restart services
+  service:
+    name: "{{item}}"
+    state: restarted
+  loop:
+    - nginx
+    - zabbix-server
