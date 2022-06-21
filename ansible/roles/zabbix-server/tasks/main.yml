@@ -23,8 +23,7 @@
     - acl
 
 - name: install repo pgsql 14
-  shell: |
-    echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+  shell: echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
   args:
     warn: no
 
@@ -68,13 +67,5 @@
     dest : /etc/nginx/sites-enabled/default
     state: link
 
-
-- name: unarchive zabbix schema
-  ansible.builtin.command:
-    cmd: gunzip /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql.gz
-    creates: /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql
-  notify:
-    - import zabbix schema
-    - restart zabbix_server
-  loop_control:
-    label: "{{ item.path }}"
+- name: import db schema
+  shell: zcat /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql.gz | sudo -u zabbix psql zabbix || true
