@@ -52,8 +52,8 @@
 - name: Create a new database
   become_user: postgres
   community.general.postgresql_db:
-    name="{{ db_name }}"
-    state=present
+    name: "{{ db_name }}"
+    stat: present
 
 - name: copy config files for zabbix-server
   copy: src={{ item.src }} dest={{ item.dest }}
