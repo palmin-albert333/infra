@@ -32,11 +32,19 @@
    - name: copy config files for beats
      copy: src={{ item.src }} dest={{ item.dest }}
      loop:
-       - { src: '~/infra/ansible/roles/elk-beats/files/packetbeat.yml', dest: '/etc/packetbeat/packetbeat.yml' }
-       - { src: '~/infra/ansible/roles/elk-beats/files/metricbeat.yml', dest: '/etc/metricbeat/metricbeat.yml' }
-       - { src: '~/infra/ansible/roles/elk-beats/files/heartbeat.yml', dest: '/etc/heartbeat/heartbeat.yml' }
-       - { src: '~/infra/ansible/roles/elk-beats/files/auditbeat.yml', dest: '/etc/auditbeat/auditbeat.yml' }
+       - { src: 'packetbeat.yml.j2', dest: '/etc/packetbeat/packetbeat.yml' }
+       - { src: 'metricbeat.yml.j2', dest: '/etc/metricbeat/metricbeat.yml' }
+       - { src: 'heartbeat.yml.j2', dest: '/etc/heartbeat/heartbeat.yml' }
+       - { src: 'auditbeat.yml.j2', dest: '/etc/auditbeat/auditbeat.yml' }
      notify:
        - restart beats
+
+
+   - name: copy config files
+     template: src={{ item.src }} dest={{ item.dest }}
+     loop:
+       - { src: 'nginx.conf.j2', dest: '/etc/zabbix/nginx.conf' }
+     notify:
+       - restart restart beats
 
   when: ansible_distribution == "Ubuntu"
