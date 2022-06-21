@@ -17,9 +17,10 @@
    - name: apt install zabbix agent 6.0
      apt: name=zabbix-agent state=present
 
-   - name: copy the zabbix config file
-     copy:
-      src={{ source_conf }} dest={{ dest_conf }}
+   - name: copy config files
+     template: src={{ item.src }} dest={{ item.dest }}
+     loop:
+       - { src: 'zabbix_agentd.conf.j2', dest: '/etc/zabbix/zabbix_agentd.conf' }
      notify:
       - restart agent
 
