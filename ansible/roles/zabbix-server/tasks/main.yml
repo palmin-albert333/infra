@@ -12,26 +12,15 @@
     name: "{{item}}"
     state: present
     update_cache: true
-    #cache_valid_time: 86400
   loop:
     - zabbix-server-pgsql
     - zabbix-frontend-php
-    - php7.4-pgsql
+    - php7.4-pgsql #7.2 если ubuntu18
     - zabbix-nginx-conf
     - zabbix-sql-scripts
     - zabbix-agent
-
-- name: remove apache2 #зависимостями почему то устанавливается apache2. Это временно исправляет проблему
-  apt:
-    name: "{{item}}"
-    state: absent
-    update_cache: true
-    #cache_valid_time: 86400
-  loop:
-    - apache2*
-
-- name: rm apache2
-  shell: apt remove -y apache2*
+    - python3-psycopg2
+    - acl
 
 - name: install repo pgsql 14
   shell: |
@@ -47,8 +36,8 @@
 - name: install pgsql
   apt:
     name: postgresql-14
+    state: present
     update_cache: true
-    #cache_valid_time: 3600
   notify:
     - enable pgsql
 
@@ -58,13 +47,12 @@
     dest: /etc/zabbix/nginx.conf
   notify:
     - restart nginx
+
 - name: create symlink
   file:
     src  : /etc/zabbix/nginx.conf
     dest : /etc/nginx/sites-enabled/default
     state: link
-
-#создание пользователя и импорт таблицы вручную пока
 
 - name: restart service
   service:
@@ -75,4 +63,24 @@
     - zabbix-server
     - zabbix-agent
     - nginx
-    - php7.4-fpm
+    - php7.4-fpm #7.2 если ubuntu18
+
+- name: Create database user
+  become: yes
+  become_user: postgres
+  postgresql_user:
+    name: "{{ db_user }}"
+    password: "{{ db_password }}"
+    role_attr_flags: SUPERUSER
+
+- name: Create a new database
+  become_user: postgres
+  community.general.postgresql_db:
+    name="{{ db_name }}"
+    state=present
+
+- name: Dump an existing database to a file (with compression)
+  postgresql_db:
+    name: zabbix
+    state: dump
+    target: /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql.gz
