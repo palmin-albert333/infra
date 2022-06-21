@@ -54,10 +54,10 @@
     dest : /etc/nginx/sites-enabled/default
     state: link
 
-- name: restart service
+- name: start and enable services
   service:
     name   : "{{item}}"
-    state  : restarted
+    state  : started
     enabled: yes
   loop:
     - zabbix-server
@@ -79,8 +79,9 @@
     name="{{ db_name }}"
     state=present
 
-- name: Dump an existing database to a file (with compression)
-  postgresql_db:
-    name: zabbix
-    state: dump
-    target: /usr/share/doc/zabbix-sql-scripts/postgresql/server.sql.gz
+#- name: copy the zabbix_server config file
+#  copy:
+#    src : ~/infra/ansible/roles/zabbix-server/files/zabbix_server.conf
+#    dest: /etc/zabbix/zabbix_server.conf
+#  notify:
+#    - restart zabbix_server
