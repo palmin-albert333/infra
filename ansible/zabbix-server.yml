@@ -1,6 +1,6 @@
 ---
 - name: install zabbix-server 6.0 nginx+postgresql
-  hosts: zabbix
+  hosts: proxy,gitlab,zabbix,elk-server
   become: true
   roles:
-  - zabbix-server
+  - letsencrypt
