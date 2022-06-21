@@ -41,30 +41,6 @@
   notify:
     - enable pgsql
 
-- name: copy the nginx config file
-  copy:
-    src : ~/infra/ansible/roles/zabbix-server/files/nginx.conf
-    dest: /etc/zabbix/nginx.conf
-  notify:
-    - restart nginx
-
-- name: create symlink
-  file:
-    src  : /etc/zabbix/nginx.conf
-    dest : /etc/nginx/sites-enabled/default
-    state: link
-
-- name: start and enable services
-  service:
-    name   : "{{item}}"
-    state  : started
-    enabled: yes
-  loop:
-    - zabbix-server
-    - zabbix-agent
-    - nginx
-    - php7.4-fpm #7.2 если ubuntu18
-
 - name: Create database user
   become: yes
   become_user: postgres
@@ -79,9 +55,18 @@
     name="{{ db_name }}"
     state=present
 
-#- name: copy the zabbix_server config file
-#  copy:
-#    src : ~/infra/ansible/roles/zabbix-server/files/zabbix_server.conf
-#    dest: /etc/zabbix/zabbix_server.conf
-#  notify:
-#    - restart zabbix_server
+- name: copy config files for zabbix-server
+  copy: src={{ item.src }} dest={{ item.dest }}
+  loop:
+    - { src: '~/infra/ansible/roles/zabbix-server/files/zabbix_server.conf', dest: '/etc/zabbix/zabbix_server.conf' }
+    - { src: '~/infra/ansible/roles/zabbix-server/files/php-fpm.conf', dest: '/etc/zabbix/php-fpm.conf' }
+    - { src: '~/infra/ansible/roles/zabbix-server/files/zabbix.conf.php', dest: '/etc/zabbix/web/zabbix.conf.php' }
+    - { src: '~/infra/ansible/roles/zabbix-server/files/nginx.conf', dest: '/etc/zabbix/nginx.conf' }
+  notify:
+    - restart services
+
+- name: create symlink
+  file:
+    src  : /etc/zabbix/nginx.conf
+    dest : /etc/nginx/sites-enabled/default
+    state: link
