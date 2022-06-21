@@ -18,9 +18,10 @@
      loop:
        - mongodb-org-server
 
-   - name: copy the config file
-     copy:
-       src={{ source_conf }} dest={{ dest_conf }}
+   - name: copy config files
+     template: src={{ item.src }} dest={{ item.dest }}
+     loop:
+       - { src: 'mongod.conf.j2', dest: '/etc/mongod.conf' }
      notify:
        - restart mongodb
 

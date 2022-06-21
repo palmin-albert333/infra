@@ -22,13 +22,10 @@
        - ntp
        - snapd
 
-   - name: copy the ntp config file
-     copy:
-       src={{ ntp_conf_source }} dest={{ ntp_conf_dest }}
-       owner=albert
-       group=albert
-       mode=0644
-
+   - name: copy config files
+     template: src={{ item.src }} dest={{ item.dest }}
+     loop:
+       - { src: 'ntp.conf.j2', dest: '/etc/ntp.conf', owner: 'albert', group: 'albert', mode: '0644'}
      notify:
        - restart ntp service
 

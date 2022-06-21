@@ -1,6 +1,0 @@
----
-source_conf:   ~/infra/ansible/roles/mongo/files/mongod.conf
-dest_conf  :   /etc/mongod.conf
-
-source_host:   ~/infra/ansible/roles/mongo/files/hosts
-dest_host  :   /etc
