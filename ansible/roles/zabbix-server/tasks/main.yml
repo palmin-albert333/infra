@@ -1,7 +1,7 @@
 ---
 - name: download zabbix 6.0 ubuntu release deb file
   get_url:
-    url: "https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu{{ ansible_distribution_version }}_all.deb"
+    url: "http://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-1+ubuntu{{ ansible_distribution_version }}_all.deb"
     dest: "~/"
 
 - name: apt install zabbix 6.0 release in ubuntu
