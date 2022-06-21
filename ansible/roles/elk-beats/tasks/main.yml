@@ -31,7 +31,7 @@
 
    - name: copy config files for beats
      copy: src={{ item.src }} dest={{ item.dest }}
-     with_items:
+     loop:
        - { src: '~/infra/ansible/roles/elk-beats/files/packetbeat.yml', dest: '/etc/packetbeat/packetbeat.yml' }
        - { src: '~/infra/ansible/roles/elk-beats/files/metricbeat.yml', dest: '/etc/metricbeat/metricbeat.yml' }
        - { src: '~/infra/ansible/roles/elk-beats/files/heartbeat.yml', dest: '/etc/heartbeat/heartbeat.yml' }
