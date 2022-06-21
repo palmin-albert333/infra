@@ -102,7 +102,7 @@ SocketDir=/run/zabbix
 # Default:
 # DBName=
 
-DBName={{ db_name }}
+DBName={{ zabbix_pg_db_name }}
 
 ### Option: DBSchema
 #	Schema name. Used for PostgreSQL.
@@ -118,7 +118,7 @@ DBName={{ db_name }}
 # Default:
 # DBUser=
 
-DBUser={{ db_user }}
+DBUser={{ zabbix_pg_db_user }}
 
 ### Option: DBPassword
 #	Database password.
@@ -126,7 +126,7 @@ DBUser={{ db_user }}
 #
 # Mandatory: no
 # Default:
-DBPassword={{ db_password }}
+DBPassword={{ zabbix_pg_db_password }}
 
 ### Option: DBSocket
 #	Path to MySQL socket.
