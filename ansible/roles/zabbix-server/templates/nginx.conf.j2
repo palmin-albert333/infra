@@ -1,6 +1,6 @@
 server {
-        listen          80;
-        server_name     zabbix.albert-infra.site;
+        listen          {{ zabbix_port_web }};
+        server_name     {{ zabbix_dns_name }};
 
         root    /usr/share/zabbix;
 
