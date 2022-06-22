@@ -17,13 +17,13 @@
   template: src={{ item.src }} dest={{ item.dest }}
   loop:
     - { src: 'nginx.conf.j2', dest: '/etc/nginx/nginx.conf' }
-    - { src: 'default.j2', dest: '/etc/nginx/sites-available/default' }
+    - { src: 'default.j2', dest: '/etc/nginx/sites-available/proxy' }
   notify:
     - restart nginx
 
 
 - name: create symlink
   file:
-    src  : /etc/nginx/sites-available/default
-    dest : /etc/nginx/sites-enabled/default
+    src  : /etc/nginx/sites-available/proxy
+    dest : /etc/nginx/sites-enabled/proxy
     state: link
