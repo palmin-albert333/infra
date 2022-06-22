@@ -1,15 +1,17 @@
-server {
-        listen 8080 default_server;
-        listen [::]:8080 default_server;
+http {
+  upstream servers {
+    least_conn;
+    server 192.168.18.241:80;
+    server 192.168.18.242:80;
+    server 192.168.18.243:80;
+  }
 
-        root /var/www/html;
-
-        index index.html index.htm index.nginx-debian.html;
-
-        server_name _;
-
-        location / {
-                try_files $uri $uri/ =404;
-        }
-
+  server {
+    listen 8080 default_server;
+    listen [::]:8080 default_server;
+    server_name albert-infra.site;
+    location / {
+      proxy_pass http://servers;
+    }
+  }
 }

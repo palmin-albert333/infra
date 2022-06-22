@@ -19,6 +19,9 @@ http {
   server {
     location / {
       proxy_pass 'http://servers/';
+      listen 8080 default_server;
+      listen [::]:8080 default_server;
+      server_name albert-infra.site;
     }
   }
 }
