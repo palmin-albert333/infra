@@ -2,4 +2,4 @@
   hosts: proxy,zabbix
   become: True
   roles:
-    - { role: "cert"}
+    - { role: "letsencrypt"}

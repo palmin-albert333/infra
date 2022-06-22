@@ -27,15 +27,15 @@ acme_sh_default_force_renew: False
 
 acme_sh_default_debug: False
 
-acme_sh_default_dns_provider: "dns_cpanel"
-acme_sh_default_dns_provider_api_keys: {CPANEL_API_KEY}
+acme_sh_default_dns_provider: "dns_cpanel"   #узнать значения
+acme_sh_default_dns_provider_api_keys: {CPANEL_API_KEY}  #узнать значения
 acme_sh_default_dns_sleep: 120
 
 acme_sh_default_extra_flags_issue: ""
 acme_sh_default_extra_flags_renew: ""
 acme_sh_default_extra_flags_install_cert: ""
 
-acme_sh_default_install_cert_reloadcmd: "sudo service nginx reload"
+acme_sh_default_install_cert_reloadcmd: "sudo systemctl restart nginx"
 
 acme_sh_default_issue_pre_hook: ""
 acme_sh_default_issue_post_hook: ""
@@ -43,4 +43,4 @@ acme_sh_default_issue_renew_hook: ""
 
 acme_sh_default_remove: False
 
-acme_sh_domains: [albert-infra.site]
+acme_sh_domains: ["albert-infra.site", ".albert-infra.site"]
