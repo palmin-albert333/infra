@@ -19,7 +19,7 @@ acme_sh_default_install_cert_reloadcmd: "docker exec nginx nginx -s reload"
 
 # 1 certificate file for all of the domains.
 acme_sh_domains:
-  - domains: ["example.com", "www.example.com", "admin.example.com"]
+  - domains: ["albert-infra.site, "www.albert-infra.site"]
 
 # Produces this on your server:
 #   /etc/ssl/ansible/example.com.key (the private key)
