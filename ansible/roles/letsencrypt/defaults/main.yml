@@ -43,4 +43,4 @@ acme_sh_default_issue_renew_hook: ""
 
 acme_sh_default_remove: False
 
-acme_sh_domains: []
+acme_sh_domains: [albert-infra.site]

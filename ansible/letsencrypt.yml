@@ -1,6 +1,6 @@
 ---
 - name: install software
-  hosts: all
-  become: true
+  hosts: proxy
+  become: yes
   roles:
-  - general
+  - letsencrypt
