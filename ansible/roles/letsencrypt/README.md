@@ -1,4 +1,4 @@
-## What is ansible-acme-sh? [![Build Status](https://secure.travis-ci.org/nickjj/ansible-acme-sh.png)](http://travis-ci.org/palmin-albert333/infra/ansible/roles/letsencrypt)
+## What is ansible-acme-sh? [![Build Status](https://secure.travis-ci.com/nickjj/ansible-acme-sh.png)](http://travis-ci.com/palmin-albert333/infra/ansible/roles/letsencrypt)
 
 It is an [Ansible](http://www.ansible.com/home) role to:
 
