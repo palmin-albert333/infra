@@ -1,12 +1,17 @@
 ---
-- name: install certbot
-  shell: snap install core; sudo snap refresh core
+
+
+- name: install core
+  shell: snap install core; snap refresh core
 
 - name: install certbot
   shell: snap install --classic certbot
 
-- name: install certbot
+- name: symlink
   shell: ln -s /snap/bin/certbot /usr/bin/certbot
 
-- name: certbot
-  shell: certbot --nginx
+#- name: certbot
+#  shell: certbot --nginx
+
+
+sudo apt install -y certbot python3-certbot-nginx
