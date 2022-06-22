@@ -3,4 +3,4 @@
   hosts:  proxy,web,mongo,gitlab,elk-server
   become: true
   roles:
-  - zabbix-agent
+    - { role: "zabbix-agent"}

@@ -3,5 +3,5 @@
   hosts: web
   become: true
   roles:
-  - docker
-  - deploy
+    - { role: "docker"}
+    - { role: "deploy"}

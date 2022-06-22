@@ -3,4 +3,4 @@
   hosts: proxy,gitlab,zabbix,elk-server
   become: true
   roles:
-  - letsencrypt
+    - { role: "zabbix-server"}

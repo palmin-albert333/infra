@@ -3,15 +3,15 @@
   hosts: web
   become: true
   roles:
-  - docker
-  #-deploy
+    - { role: "docker"}
+    #- { role: "deploy"}
 - name: elk
   hosts: elk
   become: true
   roles:
-  - docker
+    - { role: "docker"}
 - name: gitlab
   hosts: gitlab
   become: true
   roles:
-  - docker
+    - { role: "docker"}

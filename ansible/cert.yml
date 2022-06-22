@@ -1,5 +1,5 @@
 - name: install cert letsencrypt
-  hosts: proxy
+  hosts: proxy,zabbix
   become: True
   roles:
     - { role: "cert"}
