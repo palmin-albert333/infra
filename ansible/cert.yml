@@ -1,0 +1,5 @@
+- name: install cert letsencrypt
+  hosts: proxy
+  become: True
+  roles:
+    - { role: "cert"}
