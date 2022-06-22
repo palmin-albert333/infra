@@ -1,17 +1,17 @@
-http {
-  upstream servers {
-    least_conn;
-    server 192.168.18.241:80;
-    server 192.168.18.242:80;
-    server 192.168.18.243:80;
-  }
+#балансировщик с обратным прокси
 
-  server {
-    listen 8080 default_server;
-    listen [::]:8080 default_server;
-    server_name albert-infra.site;
-    location / {
-      proxy_pass http://servers;
-    }
-  }
+upstream backend {
+  least_conn;
+  server 192.168.18.241:80;
+  server 192.168.18.242:80;
+  server 192.168.18.243:80;
+}
+
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+  server_name albert-infra.site;
+    location / {
+        proxy_pass http://backend;
+    }
 }
