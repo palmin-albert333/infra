@@ -1,16 +1,12 @@
 #для разворачивания нового сервера приложения
 ---
 - name: docker login
-  docker_login:
-    registry: "{{ registry }}"
-    username: "{{ username }}"
-    password: "{{ password }}"
-    reauthorize: yes
+  shell: docker login "{{ registry }}" -u "{{ username }}" -p "{{ password }}"
 
 - name: copy docker-compose.yml
   copy:
-    src: /builds/my_projects/my_project1/docker-compose.yml
+    src: ~/infra/ansible/roles/deploy/files/docker-compose.yml
     dest: ~/docker-compose.yml
 
 - name: deploy
-  shell: docker-compose pull && docker-compose -f ~/docker-compose.yml up -d
+  shell: docker-compose pull && docker-compose up -d
