@@ -1,16 +1,16 @@
----
 #для разворачивания нового сервера приложения
-- name: pull ui docker image
-  shell: docker pull gitlab.albert-infra.site:5050/project1/my_project1:ui-latest
+---
+- name: docker login
+  docker_login:
+    registry: {{ registry }}
+    username: {{ username }}
+    password: {{ password }}
+    reauthorize: yes
 
-- name: rm
-  shell: rm -rf my_project1 || true
+- name: copy docker-compose.yml
+  copy:
+    src: /builds/my_projects/my_project1/docker-compose.yml
+    dest: ~/docker-compose.yml
 
-- name: git clone
-  shell: git clone https://gitlab.albert-infra.site/project1/my_project1.git
-
-- name: cp file
-  shell: cp /home/albert/my_project1/docker-compose.yml /home/albert/docker-compose.yml
-
-- name: run container
-  shell: docker-compose up -d
+- name: deploy
+  shell: docker-compose pull && docker-compose -f ~/docker-compose.yml up -d

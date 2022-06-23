@@ -1,0 +1,52 @@
+version: '3.3'
+services:
+
+  ui:
+    image: gitlab.albert-infra.site:5050/my_projects/my_project1:ui-latest
+    ports:
+      - 8080:9292/tcp
+    networks:
+      - front_net
+    restart: always
+    depends_on:
+      - post
+      - comment
+
+  post:
+    image: gitlab.albert-infra.site:5050/my_projects/my_project1:post-py-latest
+    networks:
+      - back_net
+      - front_net
+    restart: always
+    environment:
+      - POST_DATABASE_HOST=post_db
+    depends_on:
+      - post_db
+
+  comment:
+    image: gitlab.albert-infra.site:5050/my_projects/my_project1:comment-latest
+    networks:
+      - back_net
+      - front_net
+    restart: always
+    environment:
+      - COMMENT_DATABASE_HOST=post_db
+    depends_on:
+      - post_db
+
+  post_db:
+    image: mongo:3.2
+    volumes:
+      - post_db:/data/db
+    networks:
+      - back_net
+    restart: always
+
+volumes:
+  post_db:
+
+networks:
+  back_net:
+    driver: bridge
+  front_net:
+    driver: bridge
