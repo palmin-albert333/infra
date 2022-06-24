@@ -44,6 +44,8 @@
          - chrony
          - wget
          - glibc-langpack-ru
+         - yum-utils
+         - net-tools
        update_cache: true
        state: present
 
