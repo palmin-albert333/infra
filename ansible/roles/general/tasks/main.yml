@@ -1,7 +1,7 @@
 ---
 #установка основного программного обеспечения
 - block: #=====Block for Ubuntu=====
-   - name: install software
+   - name: install based software
      apt:
        name: "{{item}}"
        state: present
@@ -19,8 +19,6 @@
        - ntp
        - wget
        - git
-       - ntp
-       - snapd
 
    - name: copy config files
      template: src={{ item.src }} dest={{ item.dest }}
@@ -30,6 +28,33 @@
        - restart ntp service
 
   when: ansible_distribution == "Ubuntu"
+
+- name: set timezone to Europe/Moscow
+  timezone:
+    name: Europe/Moscow
+
+- block: #=====Block for CentOS=====
+
+   - name: install based software
+     dnf:
+       name:
+         - epel-release
+         - curl
+         - mc
+         - chrony
+         - wget
+       update_cache: true
+       #cache_valid_time: 3600
+       state: present
+
+   - name: copy config files
+     template: src={{ item.src }} dest={{ item.dest }}
+     loop:
+       - { src: 'chrony.conf.j2', dest: '/etc/chrony.conf', owner: 'albert', group: 'albert', mode: '0644'}
+     notify:
+       - restart chronyd service
+
+  when: ansible_distribution == "CentOS"
 
 - name: set timezone to Europe/Moscow
   timezone:
