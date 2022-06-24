@@ -1,10 +1,7 @@
 ---
 - include: disk-init.yml
 - include: update_os.yml
-- include: copy_rpms.yml
-
-
-
+#- include: copy_rpms.yml
 #- include: install_repo.yml
 #- include: install_sw.yml
 #- include: install_drbd.yml
