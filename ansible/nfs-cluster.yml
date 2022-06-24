@@ -1,0 +1,5 @@
+- name: create HA nfs cluster
+  hosts: nfs
+  become: true
+  roles:
+    - { role: "nfs-cluster"}
