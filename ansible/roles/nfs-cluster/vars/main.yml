@@ -1,2 +1,7 @@
 ---
-storage: "/dev/sdb"
+device      : /dev/sdb
+partition   : /dev/sdb1
+vg_name     : vg01
+lv_name     : lv01
+lvm_storage : /dev/vg01/lv01
+mountpoint  : /mnt/data

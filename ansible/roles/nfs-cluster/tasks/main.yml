@@ -1,29 +1,35 @@
 ---
 - parted:
-    device: /dev/sdb
+    device: "{{ device }}"
     number: 1
     state: present
 
 - name: task for creating volume group
   lvg:
-      vg: vg01
-      pvs: /dev/sdb1
-      #pesize: 16
+      vg: "{{ vg_name }}"
+      pvs: "{{ partition }}"
 
 - name: task for creating logical volume
   lvol:
-      vg: vg01
-      lv:  lv01
+      vg: "{{ vg_name }}"
+      lv:  "{{ lv_name }}"
       size: +100%FREE
       resizefs: true
 
-- name: create ext4 filesystem on /dev/vg01/lv01
+- name: create ext4 filesystem on lvm_storage
   filesystem:
     fstype: ext4
-    dev: /dev/vg01/lv01
-    force: yes
+    dev: "{{ lvm_storage }}"
 
-- name: creates directory /mnt/data
+- name: creates directory for mountpoint
   file:
-    path: /mnt/data
+    path: "{{ mountpoint }}"
     state: directory
+
+- name: mount fstab
+  ansible.posix.mount:
+    path: "{{ mountpoint }}"
+    src: "{{ lvm_storage }}"
+    fstype: ext4
+    opts: noatime
+    state: present
