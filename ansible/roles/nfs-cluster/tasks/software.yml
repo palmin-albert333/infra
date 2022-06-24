@@ -14,7 +14,3 @@
     update_cache: true
     enablerepo: ha ha-sourse
     state: present
-
-
-
-#dnf --enablerepo=HighAvailability -y install pacemaker pcs
