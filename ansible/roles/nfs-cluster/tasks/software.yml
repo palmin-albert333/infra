@@ -1,0 +1,21 @@
+---
+- name: install based software
+  dnf:
+    name:
+      - elrepo-release
+      - drbd
+      - corosync
+      - kmod
+      - yum-utils
+      - tcpdump
+      - python-kitchen
+      - net-tools
+      - tcpdump
+      - yum-utils
+      - pacemaker
+      - pcs
+      - fence-agents-all
+      - psmisc
+      - policycoreutils-python
+    update_cache: true
+    state: present

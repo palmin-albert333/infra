@@ -1,4 +1,0 @@
----
-  - name: Uploading drbd script to server
-    copy: src="drbd.sh" dest=/tmp/ mode=0777
-
