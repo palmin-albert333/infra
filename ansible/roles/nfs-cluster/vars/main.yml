@@ -1,6 +1,1 @@
 ---
-cluster_vip             : "192.168.7.195"
-cluster_vip_cidr        : "24"
-drbd_backing_disk       : "/dev/vdb"
-drbd_replication_network: "172.16.7.0/24"
-ansible_user            : "albert"

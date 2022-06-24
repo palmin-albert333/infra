@@ -43,8 +43,8 @@
          - mc
          - chrony
          - wget
+         - glibc-langpack-ru
        update_cache: true
-       #cache_valid_time: 3600
        state: present
 
    - name: copy config files
