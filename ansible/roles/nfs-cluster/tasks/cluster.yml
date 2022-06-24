@@ -1,0 +1,24 @@
+---
+- name: repos
+  shell: systemctl start pcsd.service && systemctl enable pcsd.service
+
+- name: repos
+  shell: systemctl start pcsd.service && systemctl enable pcsd.service
+
+- name: repos
+  shell: pcs cluster auth nfs1.albert-infra.site nfs2.albert-infra.site
+
+- name: repos
+  shell: pcs cluster setup --start --name NFS_DATA nfs1.albert-infra.site nfs2.albert-infra.site
+
+- name: repos
+  shell: pcs cluster enable –all && pcs cluster start –all
+
+- name: repos
+  shell: pcs property set stonith-enabled=false
+
+- name: repos
+  shell: pcs property set symmetric-cluster=true
+
+- name: repos
+  shell: pcs resource create CL_RS Filesystem device="/dev/vg01/lv01" directory="/mnt/data" fstype="ext4" --group UANFSHA

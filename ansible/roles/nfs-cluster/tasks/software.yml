@@ -2,15 +2,14 @@
 - name: repos
   shell: dnf config-manager --set-enabled ha-source ha
 
-- name: install based software
-  dnf:
-    name:
-      - pcs
-      - pacemaker
-      - fence-agents-all
-      - nfs-utils
-      - psmisc
-      - policycoreutils-python
-    update_cache: true
-    enablerepo: ha ha-sourse
-    state: present
+- name: groupinstall
+  shell: dnf groupinstall -y "High Availability"
+
+- name: install
+  shell: dnf install -y pcs fence-agents-all nfs-utils
+
+- name: firewalld
+  shell: firewall-cmd --permanent --add-service=high-availability && firewall-cmd --permanent --add-service=nfs && firewall-cmd --permanent --add-service=mountd && firewall-cmd --permanent --add-service=rpc-bind && firewall-cmd --reload
+
+- name: selinux
+  shell: SELINUX=disabled

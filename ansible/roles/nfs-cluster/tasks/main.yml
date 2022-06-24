@@ -1,14 +1,6 @@
 ---
 - include: disk-init.yml
 - include: update_os.yml
-- include: software.yml
 - include: hosts.yml
-
-
-#systemctl start pcsd.service
-#systemctl enable pcsd.service
-
-#echo ‘15426378’ | passwd hacluster --stdin
-
-
-#pcs cluster auth nfs1.albert-infra.site nfs2.albert-infra.site
+- include: software.yml
+- include: cluster.yml
