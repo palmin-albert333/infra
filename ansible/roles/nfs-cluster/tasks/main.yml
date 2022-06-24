@@ -1,3 +1,13 @@
 ---
-- include: disk-init.yml
-- include: set-lvm.yml
+- name: create gpt
+  parted:
+    device: /dev/sdb
+    number: 1
+    state: present
+
+- name: add new partition
+  parted:
+    device: "/dev/sdb1"
+    number: 1
+    part_type: primary
+    state: present

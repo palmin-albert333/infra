@@ -17,4 +17,3 @@ mongo3 ansible_host=192.168.18.249
 [nfs]
 nfs-server1 ansible_host=192.168.18.231
 nfs-server2 ansible_host=192.168.18.232
-nfs-server3 ansible_host=192.168.18.233
