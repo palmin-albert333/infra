@@ -2,11 +2,14 @@
 - name: repos
   shell: systemctl start pcsd.service && systemctl enable pcsd.service
 
-- name: repos
+- name: start and enable
   shell: systemctl start pcsd.service && systemctl enable pcsd.service
 
-- name: repos
-  shell: pcs cluster auth nfs1.albert-infra.site nfs2.albert-infra.site
+- name: user
+  shell: echo ‘12345678’ | passwd hacluster --stdin
+
+- name: auth
+  shell: pcs cluster auth nfs1.albert-infra.local nfs2.albert-infra.local
 
 - name: repos
   shell: pcs cluster setup --start --name NFS_DATA nfs1.albert-infra.site nfs2.albert-infra.site
