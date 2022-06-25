@@ -26,10 +26,16 @@
     - kibana
 
 - name: copy config files
-  template: src={{ item.src }} dest={{ item.dest }}
-  loop:
-    - { src: 'elasticsearch.yml.j2', dest: '/etc/elasticsearch/elasticsearch.yml' }
-    - { src: 'logstash.yml.j2', dest: '/etc/logstash/logstash.yml' }
-    - { src: 'kibana.yml.j2', dest: '/etc/kibana/kibana.yml' }
+  template: src=elasticsearch.yml.j2 dest=/etc/elasticsearch/elasticsearch.yml
   notify:
-  - restart elk
+  - restart elasticsearch
+
+- name: copy config files
+  template: src=logstash.yml.j2 dest=/etc/logstash/logstash.yml
+  notify:
+  - restart logstash
+
+- name: copy config files
+  template: src=kibana.yml.j2 dest=/etc/kibana/kibana.yml
+  notify:
+  - restart kibana
