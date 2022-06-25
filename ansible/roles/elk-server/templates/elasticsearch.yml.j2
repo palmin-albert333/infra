@@ -53,12 +53,12 @@ path.logs: /var/log/elasticsearch
 # By default Elasticsearch is only accessible on localhost. Set a different
 # address here to expose this node on the network:
 #
-#network.host: 192.168.0.1
+network.host: 127.0.0.1
 #
 # By default Elasticsearch listens for HTTP traffic on the first free port it
 # finds starting at 9200. Set a specific HTTP port here:
 #
-#http.port: 9200
+http.port: 9200
 #
 # For more information, consult the network module documentation.
 #
@@ -83,7 +83,7 @@ path.logs: /var/log/elasticsearch
 
 #----------------------- BEGIN SECURITY AUTO CONFIGURATION -----------------------
 #
-# The following settings, TLS certificates, and keys have been automatically      
+# The following settings, TLS certificates, and keys have been automatically
 # generated to configure Elasticsearch security features on 25-06-2022 13:22:30
 #
 # --------------------------------------------------------------------------------
