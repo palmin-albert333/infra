@@ -1,2 +1,10 @@
 ---
-# handlers file for elk-server
+- name: restart elk
+  service:
+    name: "{{item}}"
+    state: restarted
+    enabled: yes
+  loop:
+    - elasticsearch
+    - logstash
+    - kibana
