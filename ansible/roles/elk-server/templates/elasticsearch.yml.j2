@@ -4,6 +4,7 @@
 #       Before you set out to tweak and tune the configuration, make sure you
 #       understand what are you trying to accomplish and the consequences.
 #
+
 # The primary way of configuring a node is via this file. This template lists
 # the most important settings you may want to configure for a production cluster.
 #
@@ -53,7 +54,7 @@ path.logs: /var/log/elasticsearch
 # By default Elasticsearch is only accessible on localhost. Set a different
 # address here to expose this node on the network:
 #
-network.host: 127.0.0.1
+network.host: 0.0.0.0
 #
 # By default Elasticsearch listens for HTTP traffic on the first free port it
 # finds starting at 9200. Set a specific HTTP port here:
@@ -97,6 +98,7 @@ xpack.security.enrollment.enabled: true
 xpack.security.http.ssl:
   enabled: true
   keystore.path: certs/http.p12
+
 
 # Enable encryption and mutual authentication between cluster nodes
 xpack.security.transport.ssl:

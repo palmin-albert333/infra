@@ -27,17 +27,17 @@
        - logstash
        - kibana
 
-   - name: copy config files
+   - name: copy elasticsearch config files
      template: src=elasticsearch.yml.j2 dest=/etc/elasticsearch/elasticsearch.yml
      notify:
      - restart elasticsearch
 
-   - name: copy config files
+   - name: copy logstash config files
      template: src=logstash.yml.j2 dest=/etc/logstash/logstash.yml
      notify:
      - restart logstash
 
-   - name: copy config files
+   - name: copy kibana config files
      template: src=kibana.yml.j2 dest=/etc/kibana/kibana.yml
      notify:
      - restart kibana
