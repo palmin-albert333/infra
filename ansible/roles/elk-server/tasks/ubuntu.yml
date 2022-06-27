@@ -42,4 +42,7 @@
      notify:
      - restart kibana
 
+   - name: add user elastic
+     shell: /usr/share/elasticsearch/bin/elasticsearch-users useradd {{ elastic_su_user }} -p {{ elastic_su_user }} -r superuser || true
+
   when: ansible_distribution == "Ubuntu"
