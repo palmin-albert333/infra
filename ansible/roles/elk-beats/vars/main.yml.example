@@ -1,0 +1,6 @@
+---
+elastic_su_user: user
+elastic_su_pass: password
+
+elastic_user: user
+elastic_pass: password

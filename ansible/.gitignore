@@ -3,3 +3,4 @@ sh.yml
 test.yml
 /roles/deploy/vars/main.yml
 /roles/elk-server/vars/main.yml
+/roles/elk-beats/vars/main.yml
