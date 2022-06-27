@@ -42,11 +42,11 @@
      notify:
      - restart kibana
 
-   - name: add user elastic
-     shell: /usr/share/elasticsearch/bin/elasticsearch-users useradd {{ elastic_su_user }} -p {{ elastic_su_user }} -r superuser || true
+   - name: add superuser elastic
+     shell: /usr/share/elasticsearch/bin/elasticsearch-users useradd {{ elastic_su_user }} -p {{ elastic_su_pass }} -r superuser || true
 
    - name: add user elastic
-     shell: /usr/share/elasticsearch/bin/elasticsearch-users useradd {{ elastic_user }} -p {{ elastic_user }} -r network,monitoring || true
+     shell: /usr/share/elasticsearch/bin/elasticsearch-users useradd {{ elastic_user }} -p {{ elastic_pass }} -r network,monitoring,beats_admin || true
 
 
   when: ansible_distribution == "Ubuntu"

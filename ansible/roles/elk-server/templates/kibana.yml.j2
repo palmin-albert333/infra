@@ -47,8 +47,8 @@ elasticsearch.hosts: ["http://localhost:9200"]
 # the username and password that the Kibana server uses to perform maintenance on the Kibana
 # index at startup. Your Kibana users still need to authenticate with Elasticsearch, which
 # is proxied through the Kibana server.
-elasticsearch.username: {{ elastic_su_user }}
-elasticsearch.password: {{ elastic_su_pass }}
+#elasticsearch.username: {{ elastic_su_user }}
+#elasticsearch.password: {{ elastic_su_pass }}
 
 # Kibana can also authenticate to Elasticsearch via "service account tokens".
 # Service account tokens are Bearer style tokens that replace the traditional username/password based configuration.
