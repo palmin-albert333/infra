@@ -1,3 +1,6 @@
 ---
 elastic_su_user: albert
 elastic_su_pass: 12345678
+
+elastic_user: user
+elastic_pass: 12345678

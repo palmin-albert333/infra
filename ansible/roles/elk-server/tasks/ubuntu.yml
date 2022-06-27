@@ -45,4 +45,8 @@
    - name: add user elastic
      shell: /usr/share/elasticsearch/bin/elasticsearch-users useradd {{ elastic_su_user }} -p {{ elastic_su_user }} -r superuser || true
 
+   - name: add user elastic
+     shell: /usr/share/elasticsearch/bin/elasticsearch-users useradd {{ elastic_user }} -p {{ elastic_user }} -r network,monitoring || true
+
+
   when: ansible_distribution == "Ubuntu"
