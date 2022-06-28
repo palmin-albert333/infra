@@ -2,7 +2,7 @@ version: '3.3'
 services:
 
   ui:
-    image: gitlab.albert-infra.site:5050/my_projects/my_project1:ui-latest
+    image: "{{ full_project_name }}":ui-latest
     ports:
       - 8080:9292/tcp
     networks:
@@ -13,7 +13,7 @@ services:
       - comment
 
   post:
-    image: gitlab.albert-infra.site:5050/my_projects/my_project1:post-py-latest
+    image: "{{ full_project_name }}":post-py-latest
     networks:
       - back_net
       - front_net
@@ -24,7 +24,7 @@ services:
       - post_db
 
   comment:
-    image: gitlab.albert-infra.site:5050/my_projects/my_project1:comment-latest
+    image: "{{ full_project_name }}":comment-latest
     networks:
       - back_net
       - front_net
