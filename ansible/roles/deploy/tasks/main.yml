@@ -3,10 +3,8 @@
 - name: docker login
   shell: docker login "{{ registry }}" -u "{{ username }}" -p "{{ password }}"
 
-- name: copy docker-compose.yml
-  copy:
-    src: ~/infra/ansible/roles/deploy/files/docker-compose.yml
-    dest: ~/docker-compose.yml
+- name: template docker-compose.yml
+  template: src=docker-compose.yml.j2 dest=~/docker-compose.yml
 
 - name: deploy
   shell: docker-compose pull && docker-compose up -d
