@@ -55,10 +55,11 @@
    - name: copy config files for beats
      template: src={{ item.src }} dest={{ item.dest }}
      loop:
-       - { src: 'packetbeat.yml.j2', dest: '/etc/packetbeat/packetbeat.yml' }
-       - { src: 'metricbeat.yml.j2', dest: '/etc/metricbeat/metricbeat.yml' }
-       - { src: 'heartbeat.yml.j2', dest: '/etc/heartbeat/heartbeat.yml' }
        - { src: 'auditbeat.yml.j2', dest: '/etc/auditbeat/auditbeat.yml' }
+       - { src: 'heartbeat.yml.j2', dest: '/etc/heartbeat/heartbeat.yml' }
+       - { src: 'metricbeat.yml.j2', dest: '/etc/metricbeat/metricbeat.yml' }
+       - { src: 'packetbeat.yml.j2', dest: '/etc/packetbeat/packetbeat.yml' }
+
      notify:
        - restart beats
 
