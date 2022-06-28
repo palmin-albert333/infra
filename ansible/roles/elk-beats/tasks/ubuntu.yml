@@ -13,10 +13,33 @@
        update_cache: true
        cache_valid_time: 3600
      loop:
-       - packetbeat=8.1.1
-       - metricbeat=8.1.1
-       - heartbeat-elastic=8.1.1
        - auditbeat=8.1.1
+       - heartbeat-elastic=8.1.1
+       - metricbeat=8.1.1
+       - packetbeat=8.1.1
+
+   - name: stopped before setup beats
+     service:
+       name: "{{ item }}"
+       state: stopped
+       enabled: yes
+     loop:
+       - auditbeat
+       - heartbeat-elastic
+       - metricbeat
+       - packetbeat
+
+   - name: auditbeat setup
+     shell: auditbeat setup -e || true
+
+   - name: heartbeat setup
+     shell: heartbeat setup -e || true
+
+   - name: metricbeat setup
+     shell: metricbeat setup -e || true
+
+   - name: packetbeat setup
+     shell: packetbeat setup -e || true
 
    - name: start and enable
      service:
@@ -24,10 +47,10 @@
        state: started
        enabled: yes
      loop:
-       - packetbeat
-       - metricbeat
-       - heartbeat-elastic
        - auditbeat
+       - heartbeat-elastic
+       - metricbeat
+       - packetbeat
 
    - name: copy config files for beats
      template: src={{ item.src }} dest={{ item.dest }}
