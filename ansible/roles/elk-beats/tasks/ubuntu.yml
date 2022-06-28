@@ -38,8 +38,11 @@
    - name: metricbeat setup
      shell: metricbeat setup -e || true
 
+   - name: metricbeat modules enable system
+     shell: metricbeat modules enable system || true
+
    - name: packetbeat setup
-     shell: packetbeat setup -e || true
+     shell: packetbeat setup || true
 
    - name: start and enable
      service:
