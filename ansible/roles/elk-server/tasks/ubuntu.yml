@@ -19,7 +19,7 @@
 
    - name: start and enable
      service:
-       name: "{{ item }}"
+       name: "{{item}}"
        state: started
        enabled: yes
      loop:
@@ -27,20 +27,14 @@
        - logstash
        - kibana
 
-   - name: copy elasticsearch config files
-     template: src=elasticsearch.yml.j2 dest=/etc/elasticsearch/elasticsearch.yml
+   - name: copy config files for elk server
+     template: src={{ item.src }} dest={{ item.dest }}
+     loop:
+       - { src: 'elasticsearch.yml.j2', dest: '/etc/elasticsearch/elasticsearch.yml' }
+       - { src: 'logstash.yml.j2', dest: '/etc/logstash/logstash.yml' }
+       - { src: 'kibana.yml.j2', dest: '/etc/kibana/kibana.yml' }
      notify:
-     - restart elasticsearch
-
-   - name: copy logstash config files
-     template: src=logstash.yml.j2 dest=/etc/logstash/logstash.yml
-     notify:
-     - restart logstash
-
-   - name: copy kibana config files
-     template: src=kibana.yml.j2 dest=/etc/kibana/kibana.yml
-     notify:
-     - restart kibana
+     - restart services
 
    - name: add superuser elastic
      shell: /usr/share/elasticsearch/bin/elasticsearch-users useradd {{ elastic_su_user }} -p {{ elastic_su_pass }} -r superuser || true

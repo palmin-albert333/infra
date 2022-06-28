@@ -1,15 +1,9 @@
 ---
-- name: restart elasticsearch
+- name: restart services
   service:
-    name: elasticsearch
+    name: "{{item}}"
     state: restarted
-
-- name: restart logstash
-  service:
-    name: logstash
-    state: restarted
-
-- name: restart kibana
-  service:
-    name: kibana
-    state: restarted
+  loop:
+    - elasticsearch
+    - kibana
+    - logstash
