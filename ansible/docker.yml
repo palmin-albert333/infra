@@ -5,11 +5,6 @@
   roles:
     - { role: "docker"}
     #- { role: "deploy"}
-- name: elk
-  hosts: elk
-  become: true
-  roles:
-    - { role: "docker"}
 - name: gitlab
   hosts: gitlab
   become: true
