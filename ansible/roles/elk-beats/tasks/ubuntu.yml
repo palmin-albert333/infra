@@ -24,7 +24,7 @@
        - systemctl stop auditbeat && auditbeat setup -e || true
        - systemctl stop heartbeat-elastic && heartbeat setup -e || true
 
-       - systemctl stop metricbeat && metricbeat modules enable system docker || true
+       - systemctl stop metricbeat && metricbeat modules enable system docker elasticsearch-xpack || true
        - systemctl stop metricbeat && metricbeat setup -e || true
 
        - systemctl stop filebeat && filebeat modules enable auditd system elasticsearch || true
