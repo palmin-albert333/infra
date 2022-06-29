@@ -1,6 +1,6 @@
 ---
 - name: install elk-server 8
-  hosts: elk
+  hosts: elk-server
   become: true
   roles:
     - { role: "elk-server"}
