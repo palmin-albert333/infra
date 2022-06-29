@@ -1,6 +1,6 @@
 ---
 - name: install software
-  hosts: proxy,web,mongo,gitlab,zabbix-server
+  hosts: proxy,web,mongo,gitlab,zabbix
   become: true
   roles:
     - { role: "elk-beats"}
