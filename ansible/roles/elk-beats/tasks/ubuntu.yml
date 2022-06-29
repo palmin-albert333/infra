@@ -17,6 +17,7 @@
        - heartbeat-elastic=8.1.1
        - metricbeat=8.1.1
        - packetbeat=8.1.1
+       - filebeat=8.1.1
 
    - name: shell
      ansible.builtin.shell: "{{ item }}"
@@ -25,7 +26,7 @@
        - systemctl stop heartbeat-elastic && heartbeat setup -e || true
        - systemctl stop metricbeat && metricbeat setup -e || true
        - systemctl stop packetbeat && packetbeat setup -e || true
-
+       - systemctl stop filebeat && filebeat setup -e || true
 
    - name: start and enable
      service:
@@ -37,6 +38,7 @@
        - heartbeat-elastic
        - metricbeat
        - packetbeat
+       - filebeat
 
    - name: copy config files for beats
      template: src={{ item.src }} dest={{ item.dest }}
@@ -45,6 +47,7 @@
        - { src: 'heartbeat.yml.j2', dest: '/etc/heartbeat/heartbeat.yml' }
        - { src: 'metricbeat.yml.j2', dest: '/etc/metricbeat/metricbeat.yml' }
        - { src: 'packetbeat.yml.j2', dest: '/etc/packetbeat/packetbeat.yml' }
+       - { src: 'filebeat.yml.j2', dest: '/etc/filebeat/filebeat.yml' }
 
      notify:
        - restart beats
