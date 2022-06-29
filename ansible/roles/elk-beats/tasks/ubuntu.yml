@@ -16,7 +16,6 @@
        - auditbeat=8.1.1
        - heartbeat-elastic=8.1.1
        - metricbeat=8.1.1
-       - packetbeat=8.1.1
        - filebeat=8.1.1
 
    - name: shell
@@ -28,8 +27,6 @@
        - systemctl stop metricbeat && metricbeat modules enable system || true
        - systemctl stop metricbeat && metricbeat modules enable docker || true
        - systemctl stop metricbeat && metricbeat setup -e || true
-
-       - systemctl stop packetbeat && packetbeat setup -e || true
 
        - systemctl stop filebeat && filebeat modules enable auditd || true
        - systemctl stop filebeat && filebeat modules enable system || true
@@ -45,7 +42,6 @@
        - auditbeat
        - heartbeat-elastic
        - metricbeat
-       - packetbeat
        - filebeat
 
    - name: copy config files for beats
@@ -54,7 +50,6 @@
        - { src: 'auditbeat.yml.j2', dest: '/etc/auditbeat/auditbeat.yml' }
        - { src: 'heartbeat.yml.j2', dest: '/etc/heartbeat/heartbeat.yml' }
        - { src: 'metricbeat.yml.j2', dest: '/etc/metricbeat/metricbeat.yml' }
-       - { src: 'packetbeat.yml.j2', dest: '/etc/packetbeat/packetbeat.yml' }
        - { src: 'filebeat.yml.j2', dest: '/etc/filebeat/filebeat.yml' }
 
      notify:
