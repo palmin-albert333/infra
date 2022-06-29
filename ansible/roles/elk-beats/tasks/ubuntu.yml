@@ -24,8 +24,16 @@
      loop:
        - systemctl stop auditbeat && auditbeat setup -e || true
        - systemctl stop heartbeat-elastic && heartbeat setup -e || true
+
+       - systemctl stop metricbeat && metricbeat modules enable system || true
+       - systemctl stop metricbeat && metricbeat modules enable docker || true
        - systemctl stop metricbeat && metricbeat setup -e || true
+
        - systemctl stop packetbeat && packetbeat setup -e || true
+
+       - systemctl stop filebeat && filebeat modules enable auditd || true
+       - systemctl stop filebeat && filebeat modules enable system || true
+       - systemctl stop filebeat && filebeat modules enable elasticsearch || true
        - systemctl stop filebeat && filebeat setup -e || true
 
    - name: start and enable
