@@ -5,7 +5,7 @@
     state: restarted
     enabled: yes
   loop:
-    - packetbeat
+    - filebeat
     - metricbeat
     - heartbeat-elastic
     - auditbeat
