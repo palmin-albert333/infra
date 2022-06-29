@@ -4,9 +4,9 @@ proxy1 ansible_host=192.168.18.240
 web1 ansible_host=192.168.18.241
 web2 ansible_host=192.168.18.242
 web3 ansible_host=192.168.18.243
-[elk]
+[elk-server]
 elk1 ansible_host=192.168.18.244
-[zabbix]
+[zabbix-server]
 zabbix1 ansible_host=192.168.18.245
 [gitlab]
 gitlab1 ansible_host=192.168.18.246
