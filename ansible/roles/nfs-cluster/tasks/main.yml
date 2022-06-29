@@ -1,6 +1,6 @@
 ---
-- include: disk-init.yml
-- include: update_os.yml
-- include: hosts.yml
-- include: software.yml
-- include: cluster.yml
+- import_tasks: disk-init.yml
+- import_tasks: update_os.yml
+- import_tasks: hosts.yml
+- import_tasks: software.yml
+- import_tasks: cluster.yml
