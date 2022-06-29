@@ -29,20 +29,14 @@
        - metricbeat
        - packetbeat
 
-   - name: auditbeat setup
-     shell: auditbeat setup -e || true
+   - name: shell
+     ansible.builtin.shell: "{{ item }}"
+     loop:
+       - auditbeat setup -e || true
+       - heartbeat setup -e || true
+       - metricbeat setup -e || true
+       - packetbeat setup -e || true
 
-   - name: heartbeat setup
-     shell: heartbeat setup -e || true
-
-   - name: metricbeat setup
-     shell: metricbeat setup -e || true
-
-   - name: metricbeat modules enable system
-     shell: metricbeat modules enable system || true
-
-   - name: packetbeat setup
-     shell: packetbeat setup || true
 
    - name: start and enable
      service:
