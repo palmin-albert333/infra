@@ -18,24 +18,13 @@
        - metricbeat=8.1.1
        - packetbeat=8.1.1
 
-   - name: stopped before setup beats
-     service:
-       name: "{{ item }}"
-       state: stopped
-       enabled: yes
-     loop:
-       - auditbeat
-       - heartbeat-elastic
-       - metricbeat
-       - packetbeat
-
    - name: shell
      ansible.builtin.shell: "{{ item }}"
      loop:
-       - auditbeat setup -e || true
-       - heartbeat setup -e || true
-       - metricbeat setup -e || true
-       - packetbeat setup -e || true
+       - systemctl stop auditbeat && auditbeat setup -e || true
+       - systemctl stop heartbeat-elastic && heartbeat setup -e || true
+       - systemctl stop metricbeat && metricbeat setup -e || true
+       - systemctl stop packetbeat && packetbeat setup -e || true
 
 
    - name: start and enable
