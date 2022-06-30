@@ -3,4 +3,4 @@
   hosts:  proxy,web,mongo,gitlab,graylog
   become: true
   roles:
-    - { role: "zabbix-agent"}
+    - { role: "zabbix-agent-6.0"}
