@@ -1,0 +1,4 @@
+---
+- import_tasks: ubuntu.yml
+- import_tasks: debian.yml
+- import_tasks: centos.yml
