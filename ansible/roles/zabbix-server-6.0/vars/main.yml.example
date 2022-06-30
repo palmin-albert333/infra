@@ -1,0 +1,6 @@
+---
+zabbix_pg_db_name    : 111111
+zabbix_pg_db_user    : 111111
+zabbix_pg_db_password: 11111111
+zabbix_dns_name      : 1111111111111
+zabbix_port_web      : 80
