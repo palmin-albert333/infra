@@ -12,7 +12,9 @@ zabbix1 ansible_host=192.168.18.245
 gitlab1 ansible_host=192.168.18.246
 [mongo]
 mongo1 ansible_host=192.168.18.247
-mongo2 ansible_host=192.168.18.248
-mongo3 ansible_host=192.168.18.249
+[postgres]
+postgres1 ansible_host=192.168.18.248
+[mysql]
+mysql1 ansible_host=192.168.18.249
 [graylog]
 graylog-server1 ansible_host=192.168.18.250
