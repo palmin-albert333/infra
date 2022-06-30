@@ -1,2 +1,2 @@
 ---
-# tasks file for graylog
+- import_tasks: ubuntu.yml
