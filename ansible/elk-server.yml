@@ -3,4 +3,4 @@
   hosts: elk-server
   become: true
   roles:
-    - { role: "elk-server"}
+    - { role: "elk-server-8"}
