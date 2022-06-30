@@ -1,6 +1,6 @@
 ---
 - name: install zabbix-agent for zabbix 6.0 lts
-  hosts:  proxy,web,mongo,gitlab,elk-server
+  hosts:  proxy,web,mongo,gitlab,graylog
   become: true
   roles:
     - { role: "zabbix-agent"}
