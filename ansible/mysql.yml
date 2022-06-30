@@ -1,0 +1,6 @@
+---
+- name: install mysql
+  hosts: mysql
+  become: true
+  roles:
+    - { role: "mysql"}

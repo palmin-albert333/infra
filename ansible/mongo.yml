@@ -1,3 +1,4 @@
+---
 - name: install mongodb
   hosts: mongo
   become: true
