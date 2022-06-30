@@ -1,2 +1,4 @@
 ---
-# vars file for postgres
+zabbix_pg_db_name    : zabbix
+zabbix_pg_db_user    : zabbix
+zabbix_pg_db_password: 15426378aa  #пароль от базы данных придумать свой
