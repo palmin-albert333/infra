@@ -1,3 +1,3 @@
 ---
-- import_tasks: debian-based.yml
+- import_tasks: ubuntu.yml
 - import_tasks: centos.yml
