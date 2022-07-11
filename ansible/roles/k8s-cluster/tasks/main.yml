@@ -1,0 +1,6 @@
+---
+- import_tasks: swapoff.yml
+- import_tasks: initial.yml
+- import_tasks: kube-dependencies.yml
+- import_tasks: master.yml
+- import_tasks: join.yml

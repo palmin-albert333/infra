@@ -1,0 +1,6 @@
+---
+- name: install k8s-cluster
+  hosts: k8s
+  become: true
+  roles:
+    - { role: "k8s-cluster"}

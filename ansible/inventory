@@ -1,5 +1,10 @@
 [all:vars]
 ansible_python_interpreter=/usr/bin/python3
+[k8s-master]
+kuber-master1 ansible_host=192.168.18.211
+[k8s-workers]
+kuber-worker1 ansible_host=192.168.18.212
+kuber-worker2 ansible_host=192.168.18.213
 [proxy]
 proxy1 ansible_host=192.168.18.240
 [dev]
