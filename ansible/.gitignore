@@ -5,4 +5,5 @@ test.yml
 /roles/elk-server/vars/main.yml
 /roles/elk-beats/vars/main.yml
 /roles/postgres-14/vars/main.yml
+/roles/postgres-cluster/vars/main.yml
 /roles/zabbix-server/vars/main.yml
