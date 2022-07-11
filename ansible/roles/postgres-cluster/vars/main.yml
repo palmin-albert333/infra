@@ -1,2 +1,3 @@
 ---
-# vars file for postgres-cluster
+pg_repl_user    : repluser
+pg_repl_password: 15426378aa
