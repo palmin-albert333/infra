@@ -1,2 +1,3 @@
 ---
-# handlers file for postgres
+- name: enable pgsql
+  service: name=postgresql state=started enabled=yes
