@@ -1,2 +1,8 @@
 ---
-- import_tasks: ubuntu.yml
+- name: Create logical_one logical slot to the database acme if doesn't exist
+  postgresql_slot:
+    name: logical_slot_one
+    slot_type: logical
+    state: present
+    output_plugin: custom_decoder_one
+    db: "acme"

@@ -13,8 +13,18 @@
      template: src={{ item.src }} dest={{ item.dest }}
      loop:
        - { src: 'postgresql.conf.j2', dest: '/etc/postgresql/14/main/postgresql.conf' }
-       - { src: 'pg_hba.conf.j2', dest: '/etc/postgresql/14/main/pg_hba.conf' }
      notify:
       - restart postgresql
 
   when: ansible_distribution == "Ubuntu"
+
+- block: #=====Block for Master=====
+
+   - name: copy config files
+     template: src={{ item.src }} dest={{ item.dest }}
+     loop:
+       - { src: 'pg_hba.conf.j2', dest: '/etc/postgresql/14/main/pg_hba.conf' }
+     notify:
+      - restart postgresql
+
+  when: ansible_hostname == "postgres"
