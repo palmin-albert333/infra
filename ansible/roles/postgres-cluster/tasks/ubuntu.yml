@@ -1,12 +1,20 @@
 ---
 - block: #=====Block for Ubuntu=====
 
-   - name: Create database user
+   - name: create database replica user
      become_user: postgres
      postgresql_user:
        name: "{{ pg_repl_user }}"
        password: "{{ pg_repl_password }}"
        role_attr_flags: SUPERUSER
        state: present
+
+   - name: copy config files
+     template: src={{ item.src }} dest={{ item.dest }}
+     loop:
+       - { src: 'postgresql.conf.j2', dest: '/etc/postgresql/14/main/postgresql.conf' }
+       - { src: 'pg_hba.conf.j2', dest: '/etc/postgresql/14/main/pg_hba.conf' }
+     notify:
+      - restart postgresql
 
   when: ansible_distribution == "Ubuntu"

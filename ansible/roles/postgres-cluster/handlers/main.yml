@@ -1,2 +1,3 @@
 ---
-# handlers file for postgres-cluster
+- name: restart postgresql
+  service: name=postgresql state=restarted enabled=yes
