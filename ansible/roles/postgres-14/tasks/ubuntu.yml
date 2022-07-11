@@ -16,6 +16,7 @@
        name: "{{item}}"
        state: present
        update_cache: true
+       cache_valid_time: 3600
      loop:
        - postgresql-14
        - python3-psycopg2
