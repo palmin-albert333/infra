@@ -1,6 +1,0 @@
----
-- name: install software
-  hosts: graylog
-  become: true
-  roles:
-    - { role: "graylog-server"}
