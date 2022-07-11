@@ -16,5 +16,4 @@ gitlab1 ansible_host=192.168.18.246
 mongo1 ansible_host=192.168.18.247
 [postgres]
 postgres1 ansible_host=192.168.18.248
-[mysql]
-mysql1 ansible_host=192.168.18.249
+postgres2 ansible_host=192.168.18.249
