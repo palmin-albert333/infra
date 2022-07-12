@@ -1,6 +1,6 @@
 ---
 - name: install zabbix-server 6.0 nginx+postgresql
-  hosts: zabbix
+  hosts: zabbix-server
   become: true
   roles:
     - { role: "zabbix-server-6.0"}
