@@ -1,12 +1,11 @@
 ---
-- hosts: postgres
+- hosts: zabbix1
   become: yes
   tasks:
-    - name: create the 'ubuntu' user
-      user: name=ubuntu append=yes state=present createhome=yes shell=/bin/bash
 
-    - name: allow 'ubuntu' to have passwordless sudo
-      lineinfile:
-        dest: /etc/sudoers
-        line: 'ubuntu ALL=(ALL) NOPASSWD: ALL'
-        validate: 'visudo -cf %s'
+  - name: dump an existing database to a file
+    become_user: postgres
+    community.postgresql.postgresql_db:
+      name: zabbix
+      state: dump
+      target: ~/zabbix_db-{{ ansible_date_time.date }}.sql.gz

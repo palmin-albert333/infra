@@ -1,1 +1,11 @@
 ---
+- hosts: zabbix1
+  become: yes
+  tasks:
+
+  - name: restore database to a file
+    become_user: postgres
+    community.postgresql.postgresql_db:
+      name: zabbix
+      state: restore
+      target: ~/zabbix_db-{{ ansible_date_time.date }}.sql.gz

@@ -1,8 +1,10 @@
 ---
-- name: Create logical_one logical slot to the database acme if doesn't exist
+- name: create physical slot to the database zabbix
+  become_user: postgres
   postgresql_slot:
-    name: logical_slot_one
-    slot_type: logical
+    name: physical_slot
+    slot_type: physical
+    immediately_reserve: yes
     state: present
-    output_plugin: custom_decoder_one
-    db: "acme"
+    #output_plugin: custom_decoder_one
+    db: zabbix
